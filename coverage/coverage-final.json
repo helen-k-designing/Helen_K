@@ -1,0 +1,2 @@
+{"/Users/olenakravtsova/GitHub/Helen_K/src/math.ts": {"path":"/Users/olenakravtsova/GitHub/Helen_K/src/math.ts","statementMap":{"0":{"start":{"line":2,"column":0},"end":{"line":2,"column":null}}},"fnMap":{"0":{"name":"add","decl":{"start":{"line":1,"column":16},"end":{"line":1,"column":20}},"loc":{"start":{"line":1,"column":50},"end":{"line":3,"column":null}},"line":1}},"branchMap":{},"s":{"0":2},"f":{"0":2},"b":{},"meta":{"lastBranch":0,"lastFunction":1,"lastStatement":1,"seen":{"f:1:16:1:20":0,"s:2:0:2:Infinity":0},"fnNames":{}}}
+}

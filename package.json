@@ -1,10 +1,24 @@
 {
-  "devDependencies": {
-    "@types/node": "^26.6.4",
-    "@vitest/coverage-v8": "^5.0.3",
-    "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.9.9",
-    "typescript": "^7.0.2",
-    "vitest": "^5.0.3"
+  "name": "helen_k",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^7.0.2"
   }
 }
