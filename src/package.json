@@ -1,6 +1,7 @@
 {
-  "name": "ts-base",
+  "name": "helen_k",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,12 +13,11 @@
     "lint:fix": "eslint . --fix",
     "test": "vitest",
     "test:run": "vitest run",
-    "test:cnpm run test:coverageoverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "typescript": "^7.0.2"
   }
