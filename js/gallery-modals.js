@@ -24,13 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const lastNameInput = document.getElementById('lastName');
     const firstNameInput = document.getElementById('firstName');
+    const emailRegInput = document.getElementById('emailReg') || document.getElementById('email-reg');
     const phoneInput = document.getElementById('phone');
-    const regPasswordInput = document.getElementById('password-reg'); // Бажано дати унікальний ID у формі реєстрації
+    const regPasswordInput = document.getElementById('password-reg');
     const confirmPasswordInput = document.getElementById('confirm-password');
 
     const lastNameError = document.getElementById('lastNameError');
     const firstNameError = document.getElementById('firstNameError');
-    const emailRegError = document.getElementById('emailRegError'); // Унікальний спан помилки пошти реєстрації
+    const emailRegError = document.getElementById('emailRegError');
     const phoneError = document.getElementById('phoneError');
     const passwordRegError = document.getElementById('passwordRegError');
     const confirmPasswordError = document.getElementById('confirmPasswordError');
@@ -40,20 +41,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const genderFemale = document.getElementById('genderFemale');
     const genderMale = document.getElementById('genderMale');
 
-    // Спільна змінна для повернення фокусу клавіатури після закриття будь-якого вікна
+    // Змінна для повернення фокусу
     let lastActiveElement;
 
     // ==========================================================================
-    // 3. УНІВЕРСАЛЬНІ ФУНКЦІЇ ДЛЯ ВІДКРИТТЯ ТА ЗАКРИТТЯ ВІКОН
+    // 3. УНІВЕРСАЛЬНІ ФУНКЦІЇ ВІДКРИТТЯ ТА ЗАКРИТТЯ ВІКОН
     // ==========================================================================
     
     function openModal(modalElement, firstInput) {
         if (!modalElement) return;
-        lastActiveElement = document.activeElement; // Запам'ятовуємо, де був користувач
-        modalElement.classList.add('active');       // Додаємо твій фірмовий клас active з CSS
-        document.body.style.overflow = 'hidden';    // Заморожуємо фон галереї
+        lastActiveElement = document.activeElement;
+        modalElement.classList.add('active');
+        document.body.style.overflow = 'hidden';
 
-        // Стабільний автофокус на перше поле форми через 50мс
         setTimeout(() => {
             if (firstInput) firstInput.focus();
         }, 50);
@@ -61,28 +61,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeModal(modalElement, formElement, errorSpans = []) {
         if (!modalElement) return;
-        modalElement.classList.remove('active'); // Ховаємо вікно за допомогою CSS
-        document.body.style.overflow = '';       // Повертаємо скрол сторінці галереї
+        modalElement.classList.remove('active');
+        document.body.style.overflow = '';
         
-        formElement?.reset(); // Повністю очищаємо поля форми
+        if (formElement) formElement.reset();
 
-        // Очищаємо всі кастомні тексти помилок
         errorSpans.forEach(span => {
             if (span) span.textContent = '';
         });
 
-        // Скидаємо маркери валідації браузера
         const inputs = formElement?.querySelectorAll('input');
         inputs?.forEach(input => input.setCustomValidity(''));
 
-        if (lastActiveElement) lastActiveElement.focus(); // Повертаємо фокус на кнопку меню
+        // Скидаємо хеш в URL, щоб кнопка відкриття працювала повторно
+        if (window.location.hash) {
+            history.pushState("", document.title, window.location.pathname + window.location.search);
+        }
+
+        if (lastActiveElement) lastActiveElement.focus();
     }
 
     // ==========================================================================
-    // 4. СЛУХАЧІ КЛІКІВ ДЛЯ НАВІГАЦІЇ (КЕРУВАННЯ ЧЕРЕЗ ХЕШІ #)
+    // 4. НАВІГАЦІЯ ЧЕРЕЗ ХЕШІ (#open-login / #open-register-modal)
     // ==========================================================================
     
-    // Функція, яка перевіряє адресу сторінки і вирішує, яке вікно відкрити
     function checkUrlHash() {
         const hash = window.location.hash;
         
@@ -93,42 +95,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Стежимо за завантаженням сторінки
     checkUrlHash();
-
-    // НАДВАЖЛИВО: стежимо за зміною хешу без перезавантаження сторінки (коли користувач клікає по меню прямо на сторінці галереї)
     window.addEventListener('hashchange', checkUrlHash);
 
     // ==========================================================================
-    // 5. ОБРОБНИКИ ПОДІЙ ДЛЯ ЗАКРИТТЯ ВІКОН
+    // 5. ОБРОБНИКИ ПОДІЙ ЗАКРИТТЯ ВІКОН
     // ==========================================================================
     
-    // Кліки для вікна входу
     closeLoginBtn?.addEventListener('click', () => closeModal(loginModal, loginForm, [emailError, passwordError]));
     cancelLoginBtn?.addEventListener('click', () => closeModal(loginModal, loginForm, [emailError, passwordError]));
     loginModal?.addEventListener('click', (e) => {
         if (e.target === loginModal) closeModal(loginModal, loginForm, [emailError, passwordError]);
     });
 
-    // Кліки для вікна реєстрації
     closeRegisterBtn?.addEventListener('click', () => closeModal(registerModal, registrationForm, [lastNameError, firstNameError, emailRegError, phoneError, passwordRegError, confirmPasswordError, genderError]));
     registerModal?.addEventListener('click', (e) => {
         if (e.target === registerModal) closeModal(registerModal, registrationForm, [lastNameError, firstNameError, emailRegError, phoneError, passwordRegError, confirmPasswordError, genderError]);
     });
 
-    // Додатково для зручності: закриття будь-якого відкритого вікна клавішею Esc
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            if (loginModal?.classList.contains('active')) closeModal(loginModal, loginForm, [emailError, passwordError]);
-            if (registerModal?.classList.contains('active')) closeModal(registerModal, registrationForm, [lastNameError, firstNameError, emailRegError, phoneError, passwordRegError, confirmPasswordError, genderError]);
-            
-            // Очищаємо хеш в адресному рядку, щоб при повторному кліку по меню все працювало коректно
-            window.location.hash = ''; 
+            if (loginModal?.classList.contains('active')) {
+                closeModal(loginModal, loginForm, [emailError, passwordError]);
+            }
+            if (registerModal?.classList.contains('active')) {
+                closeModal(registerModal, registrationForm, [lastNameError, firstNameError, emailRegError, phoneError, passwordRegError, confirmPasswordError, genderError]);
+            }
         }
     });
 
     // ==========================================================================
-    // 6. ЛОГІКА ОКА (ПОКАЗ/ПРИХОВАННЯ ПАРОЛІВ) ДЛЯ ОБОХ ФОРМ
+    // 6. ЛОГІКА ОКА (ПОКАЗ/ПРИХОВАННЯ ПАРОЛІВ)
     // ==========================================================================
     document.querySelectorAll('.toggle-password').forEach(button => {
         button.addEventListener('click', function () {
@@ -148,29 +145,170 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================================================
-    // 7. ОПТИМІЗАЦІЯ КЕРУВАННЯ СТАТТЮ (Твоя фішка з Tab)
+    // 7. КЕРУВАННЯ СТАТТЮ (Tab / Focus)
     // ==========================================================================
     [genderFemale, genderMale].forEach(radio => {
         if (radio) {
             radio.addEventListener('change', () => {
                 if (genderError) genderError.textContent = '';
-                genderFemale.setCustomValidity('');
-                genderMale.setCustomValidity('');
+                genderFemale?.setCustomValidity('');
+                genderMale?.setCustomValidity('');
             });
             radio.addEventListener('focus', () => {
                 radio.checked = true;
                 if (genderError) genderError.textContent = '';
-                genderFemale.setCustomValidity('');
-                genderMale.setCustomValidity('');
+                genderFemale?.setCustomValidity('');
+                genderMale?.setCustomValidity('');
             });
         }
     });
 
     // ==========================================================================
-    // 8. ЗАПОБІЖНИК ВІД ENTER ТА ВАЛІДАЦІЯ НАДСИЛАННЯ ФОРМ
+    // 8. ЖИВА ВАЛІДАЦІЯ ПОЛІВ ВВЕДЕННЯ
+    // ==========================================================================
+
+    // --- Валідація Входу ---
+    function validateLoginEmail() {
+        if (!emailInput) return;
+        emailInput.setCustomValidity('');
+        const val = emailInput.value.trim();
+
+        if (!val) {
+            if (emailError) emailError.textContent = 'Поле Email не може бути порожнім.';
+            emailInput.setCustomValidity('Заповніть це поле.');
+        } else if (!emailInput.checkValidity()) {
+            if (emailError) emailError.textContent = 'Введіть коректний Email.';
+            emailInput.setCustomValidity('Некоректний формат.');
+        } else {
+            if (emailError) emailError.textContent = '';
+            emailInput.setCustomValidity('');
+        }
+    }
+
+    function validateLoginPassword() {
+        if (!passwordInput) return;
+        const val = passwordInput.value;
+
+        if (!val) {
+            if (passwordError) passwordError.textContent = 'Поле Пароль не може бути порожнім.';
+            passwordInput.setCustomValidity('Заповніть це поле.');
+        } else if (val.length < 6) {
+            if (passwordError) passwordError.textContent = 'Мінімум 6 символів.';
+            passwordInput.setCustomValidity('Пароль занадто короткий.');
+        } else {
+            if (passwordError) passwordError.textContent = '';
+            passwordInput.setCustomValidity('');
+        }
+    }
+
+    // --- Валідація Реєстрації ---
+    function validateLastName() {
+        if (!lastNameInput) return;
+        if (!lastNameInput.value.trim()) {
+            if (lastNameError) lastNameError.textContent = 'Поле Last Name не може бути порожнім.';
+            lastNameInput.setCustomValidity('Заповніть поле.');
+        } else {
+            if (lastNameError) lastNameError.textContent = '';
+            lastNameInput.setCustomValidity('');
+        }
+    }
+
+    function validateFirstName() {
+        if (!firstNameInput) return;
+        if (!firstNameInput.value.trim()) {
+            if (firstNameError) firstNameError.textContent = 'Поле First Name не може бути порожнім.';
+            firstNameInput.setCustomValidity('Заповніть поле.');
+        } else {
+            if (firstNameError) firstNameError.textContent = '';
+            firstNameInput.setCustomValidity('');
+        }
+    }
+
+    function validateRegEmail() {
+        if (!emailRegInput) return;
+        emailRegInput.setCustomValidity('');
+        const val = emailRegInput.value.trim();
+
+        if (!val) {
+            if (emailRegError) emailRegError.textContent = 'Поле Email не може бути порожнім.';
+            emailRegInput.setCustomValidity('Заповніть поле.');
+        } else if (!emailRegInput.checkValidity()) {
+            if (emailRegError) emailRegError.textContent = 'Введіть коректний Email.';
+            emailRegInput.setCustomValidity('Некоректний формат.');
+        } else {
+            if (emailRegError) emailRegError.textContent = '';
+            emailRegInput.setCustomValidity('');
+        }
+    }
+
+    function validatePhone() {
+        if (!phoneInput) return;
+        if (!phoneInput.value.trim()) {
+            if (phoneError) phoneError.textContent = 'Поле Phone Number не може бути порожнім.';
+            phoneInput.setCustomValidity('Заповніть поле.');
+        } else {
+            if (phoneError) phoneError.textContent = '';
+            phoneInput.setCustomValidity('');
+        }
+    }
+
+    function validateRegPasswords() {
+        if (!regPasswordInput || !confirmPasswordInput) return;
+        const pass = regPasswordInput.value;
+        const confirmPass = confirmPasswordInput.value;
+
+        if (!pass) {
+            if (passwordRegError) passwordRegError.textContent = 'Password cannot be empty.';
+            regPasswordInput.setCustomValidity('Заповніть поле.');
+        } else if (pass.length < 8) {
+            if (passwordRegError) passwordRegError.textContent = 'Minimum 8 characters required.';
+            regPasswordInput.setCustomValidity('Короткий пароль.');
+        } else {
+            if (passwordRegError) passwordRegError.textContent = '';
+            regPasswordInput.setCustomValidity('');
+        }
+
+        if (confirmPasswordError) {
+            if (!confirmPass) {
+                confirmPasswordError.textContent = '';
+                confirmPasswordInput.setCustomValidity('');
+            } else if (pass !== confirmPass) {
+                confirmPasswordError.textContent = 'Passwords do not match';
+                confirmPasswordInput.setCustomValidity('Паролі не збігаються.');
+            } else {
+                confirmPasswordError.textContent = '';
+                confirmPasswordInput.setCustomValidity('');
+            }
+        }
+    }
+
+    function validateGender() {
+        if (!genderFemale || !genderMale) return;
+        if (!genderFemale.checked && !genderMale.checked) {
+            if (genderError) genderError.textContent = 'Будь ласка, оберіть вашу стать.';
+            genderFemale.setCustomValidity('Оберіть стать');
+        } else {
+            if (genderError) genderError.textContent = '';
+            genderFemale.setCustomValidity('');
+            genderMale.setCustomValidity('');
+        }
+    }
+
+    // Слухачі live-введення
+    emailInput?.addEventListener('input', validateLoginEmail);
+    passwordInput?.addEventListener('input', validateLoginPassword);
+
+    lastNameInput?.addEventListener('input', validateLastName);
+    firstNameInput?.addEventListener('input', validateFirstName);
+    emailRegInput?.addEventListener('input', validateRegEmail);
+    phoneInput?.addEventListener('input', validatePhone);
+    regPasswordInput?.addEventListener('input', validateRegPasswords);
+    confirmPasswordInput?.addEventListener('input', validateRegPasswords);
+
+    // ==========================================================================
+    // 9. ЗАПОБІЖНИК ВІД ENTER ТА ОБРОБКА SUBMIT
     // ==========================================================================
     
-    // Запобіжник для Enter
     document.querySelectorAll('form').forEach(formElement => {
         formElement.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && e.target.tagName === 'INPUT') {
@@ -184,32 +322,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- ОБРОБКА ФОРМИ ВХОДУ ---
+    // --- ОБРОБКА ВХОДУ ---
     loginForm?.addEventListener('submit', (e) => {
-        e.preventDefault(); // Скасовуємо перезавантаження
+        e.preventDefault();
         
-        // (Тут будуть твої функції індивідуальної перевірки validateEmail, validatePassword)
+        validateLoginEmail();
+        validateLoginPassword();
+
         if (!loginForm.checkValidity()) return;
 
         const formData = new FormData(loginForm);
         const data = Object.fromEntries(formData.entries());
-        console.log('Успішний вхід прямо з галереї:', data);
+        console.log('Успішний вхід:', data);
         
-        alert(`Ласкаво просимо, ${data.email}!`);
+        alert(`Ласкаво просимо, ${data.email || ''}!`);
         closeModal(loginModal, loginForm, [emailError, passwordError]);
-        window.location.hash = ''; // Очищаємо хвіст URL
     });
 
-// --- ОБРОБКА ФОРМИ РЕЄСТРАЦІЇ ---
-registrationForm?.addEventListener('submit', (e) => {
-e.preventDefault();
-// (Тут будуть твої функції валідації полей реєстрації)
-if (!registrationForm.checkValidity()) return;
-const formData = new FormData(registrationForm);
-const data = Object.fromEntries(formData.entries());
-console.log('Успішна реєстрація прямо з галереї:', data);
-alert(`Вітаємо, ${data.firstName}! Реєстрація пройшла успішно.`);
-closeModal(registerModal, registrationForm, [lastNameError, firstNameError, emailRegError, phoneError, passwordRegError, confirmPasswordError, genderError]);
-window.location.hash = '';
-});
+    // --- ОБРОБКА РЕЄСТРАЦІЇ ---
+    registrationForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        validateLastName();
+        validateFirstName();
+        validateRegEmail();
+        validatePhone();
+        validateRegPasswords();
+        validateGender();
+
+        if (!registrationForm.checkValidity()) return;
+
+        const formData = new FormData(registrationForm);
+        const data = Object.fromEntries(formData.entries());
+        console.log('Успішна реєстрація:', data);
+
+        alert(`Вітаємо, ${data.firstName || ''}! Реєстрація пройшла успішно.`);
+        closeModal(registerModal, registrationForm, [lastNameError, firstNameError, emailRegError, phoneError, passwordRegError, confirmPasswordError, genderError]);
+    });
 });
