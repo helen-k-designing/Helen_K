@@ -13,13 +13,14 @@ const add = (a: number, b: number): number => {
   return a + b;
 };
 
-// --- Інтерфейс для товару ---
+// --- Об'єднаний інтерфейс для товару ---
 interface Product {
-  id: number;
-  title: string;
+  id: string;          // Змінено на string, щоб працювало з "p1", "p2"
+  name: string;        // Використовуємо name замість / разом з title
+  title?: string;      // Опціонально для сумісності
   brand?: string;
   price: number;
-  category: string;
+  category?: string;   // Зроблено опціональним
 }
 
 // Початковий стан магазину
@@ -30,26 +31,25 @@ const itemsPerPage: number = 3;
 // --- Робота з елементами інтерфейсу (DOM) ---
 
 const searchInput = document.getElementById("searchInput") as HTMLInputElement;
-searchInput.addEventListener("input", (event) => {
+searchInput?.addEventListener("input", (event) => {
   const input = event.target as HTMLInputElement;
   console.log(`User typed: ${input.value}`);
-  // Тут в майбутньому буде фільтрація за назвою
 });
 
 const sortSelect = document.getElementById("sortSelect") as HTMLSelectElement;
-sortSelect.addEventListener("change", (event) => {
+sortSelect?.addEventListener("change", (event) => {
   const select = event.target as HTMLSelectElement;
   console.log(`User selected: ${select.value}`);
 });
 
 const priceMax = document.getElementById("priceMax") as HTMLInputElement;
-priceMax.addEventListener("input", (event) => {
+priceMax?.addEventListener("input", (event) => {
   const input = event.target as HTMLInputElement;
   console.log(`User set max price: ${input.value}`);
 });
 
 const priceMin = document.getElementById("priceMin") as HTMLInputElement;
-priceMin.addEventListener("input", (event) => {
+priceMin?.addEventListener("input", (event) => {
   const input = event.target as HTMLInputElement;
   console.log(`User set min price: ${input.value}`);
 });
@@ -63,11 +63,11 @@ checkboxes.forEach((checkbox) => {
 });
 
 const clearFiltersBtn = document.getElementById("clearFiltersBtn") as HTMLButtonElement;
-clearFiltersBtn.addEventListener("click", () => {
-  searchInput.value = "";
-  sortSelect.selectedIndex = 0;
-  priceMax.value = "";
-  priceMin.value = "";
+clearFiltersBtn?.addEventListener("click", () => {
+  if (searchInput) searchInput.value = "";
+  if (sortSelect) sortSelect.selectedIndex = 0;
+  if (priceMax) priceMax.value = "";
+  if (priceMin) priceMin.value = "";
   checkboxes.forEach((checkbox) => {
     checkbox.checked = false;
   });
@@ -81,10 +81,8 @@ const totalProductsCountHTML = document.getElementById('totalProductsCount') as 
 // --- Демонстрація роботи домашнього завдання на сторінці ---
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Використовуємо функцію concatTwoStrings для формування назви товару
   const formattedTitle: string = concatTwoStrings("Super", "Gadget Pro");
   
-  // Використовуємо функцію add для розрахунку ціни зі знижкою чи доставкою
   const basePrice: number = 1000;
   const deliveryCost: number = 150;
   const finalPrice: number = add(basePrice, deliveryCost);
@@ -108,71 +106,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-// 1. Інтерфейс для товару
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-}
-// 2. Інтерфейс для елемента у кошику (товар + кількість)
+
+// --- Інтерфейс для елемента у кошику (товар + кількість) ---
 interface CartItem {
   product: Product;
   quantity: number;
 }
 
-// 3. Клас для кошика
-
+// --- Клас для кошика ---
 class ShoppingCart {
-  // private items: CartItem[] = [];
-  // Використовуємо Map для швидкого пошуку та оновлення за id товару
   private items: Map<string, CartItem> = new Map();
 
   // Додати товар у кошик
-  addItem(product: Product, quantity: number  = 1): void {
-      if (quantity <= 0) {
-          throw new Error("Quantity must be greater than zero.");
-      }
+  addItem(product: Product, quantity: number = 1): void {
+    if (quantity <= 0) {
+      throw new Error("Quantity must be greater than zero.");
+    }
     if (this.items.has(product.id)) {
-      // Якщо товар вже є у кошику, оновлюємо кількість
       const existingItem = this.items.get(product.id)!;
       existingItem.quantity += quantity;
     } else {
-      // Якщо товару немає у кошику, додаємо новий елемент
       this.items.set(product.id, { product, quantity });
     }
   }
 
   // Видалити товар з кошика
-  // removeItem(productId: string): void {
-  //   if (this.items.has(productId)) {
-  //     this.items.delete(productId);
-  //   } else {
-  //     throw new Error("Product not found in the cart.");
-  //   }
-  // }
-  // removeItem(productId: string):boolean {
-  //   if (this.items.has(productId)) {
-  //     this.items.delete(productId);
-  //     return true; // Повертаємо true, якщо товар успішно видалено
-  //   } else {
-  //     return false; // Повертаємо false, якщо товар не знайдено
-  //   }
-  // }
-  removeItem(productId: string):boolean {
+  removeItem(productId: string): boolean {
     return this.items.delete(productId);  
   }
-
-  // updateItemQuantity(productId: string, quantity: number): void {
-  //   if (quantity <= 0) {
-  //     throw new Error("Quantity must be greater than zero.");
-  //   }
-  //   if (this.items.has(productId)) {
-  //     const item = this.items.get(productId)!;
-  //     item.quantity = quantity;
-  //   } else {
-  //     throw new Error("Product not found in the cart.");
-  //   }
-  // }
 
   // Отримати всі товари у кошику
   getItems(): CartItem[] {
@@ -198,8 +159,6 @@ class ShoppingCart {
     for (const item of this.items.values()) {
       total += item.product.price * item.quantity;
     }
-    // return total;
-    // Округлення до 2 знаків після коми для уникнення проблем з розрахунками Float
     return Math.round(total * 100) / 100;
   }
 
@@ -211,11 +170,11 @@ class ShoppingCart {
     }
     return totalItems;
   }
+
   // Очистити кошик
   clearCart(): void {
     this.items.clear();
   }
-
 }
 
 const cart = new ShoppingCart();
@@ -229,14 +188,14 @@ cart.addItem(laptop);
 cart.addItem(mouse, 2); // Додали 2 мишки
 cart.addItem(mouse); // Додали ще одну мишку (разом 3)
 
-
 console.log("Товари в кошику:", cart.getItems());
-console.log("Загальна кількість:", cart.getTotalItems()); // Виведе: 4
-console.log("Загальна вартість:", cart.getTotalPrice()); // Виведе: 27400
+console.log("Загальна кількість:", cart.getTotalItems()); 
+console.log("Загальна вартість:", cart.getTotalPrice()); 
 
 // 2. Оновлюємо кількість
-cart.updateItemQuantity("p2", 1); // Зменшили кількість мишок до 1
-console.log("Нова вартість після оновлення:", cart.getTotalPrice()); // Виведе: 25800
+cart.updateItemQuantity("p2", 1); 
+console.log("Нова вартість після оновлення:", cart.getTotalPrice()); 
+
 // 3. Видаляємо товар
-cart.removeItem("p1"); // Видалили ноутбук
-console.log("Загальна кількість після видалення:", cart.getTotalItems()); // Виведе: 1
+cart.removeItem("p1"); 
+console.log("Загальна кількість після видалення:", cart.getTotalItems());
