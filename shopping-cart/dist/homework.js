@@ -1,4 +1,3 @@
-"use strict";
 var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
     if (kind === "m") throw new TypeError("Private method is not writable");
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
@@ -134,9 +133,6 @@ finalNode.move(10, 20);
 console.log("Після move(10, 20):", finalNode.position); // { x: 10, y: 20 }
 finalNode.position = { x: 75, y: 150 };
 console.log("Після оновлення через сеттер:", finalNode.position); // { x: 75, y: 150 }
-// ==========================================
-// Урок 27. ЗАВДАННЯ 1: Створення інтерфейсу UserProfile та об'єкта myUser
-// ==========================================
 const myUser = {
     id: 1,
     name: "Олександр",
@@ -148,9 +144,6 @@ const filterLength = (array, criterion) => {
     const minLength = Number(criterion);
     return array.filter((str) => str.length > minLength);
 };
-// ==========================================
-// Урок 27. ЗАВДАННЯ 2: Інтерфейс для функції фільтрації масиву та реалізація filterLength
-// ==========================================
 const words = ["apple", "banana", "cat", "elephant", "dog"];
 const filteredWords = filterLength(words, "4");
 console.log("Відфільтровані рядки (довжина > 4):", filteredWords);

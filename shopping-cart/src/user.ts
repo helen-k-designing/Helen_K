@@ -1,3 +1,4 @@
+/*
 // 1. Описуємо інтерфейс IUser
 interface IUser {
     id: number;
@@ -316,3 +317,4 @@ try {
 } catch (error: any) {
     console.error("Помилка:", error.message);
 }
+    */

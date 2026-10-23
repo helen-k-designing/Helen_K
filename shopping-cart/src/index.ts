@@ -1,3 +1,4 @@
+/*
 const hello = "Hello, World!";
 console.log(hello);
 
@@ -199,3 +200,4 @@ console.log("Нова вартість після оновлення:", cart.get
 // 3. Видаляємо товар
 cart.removeItem("p1"); 
 console.log("Загальна кількість після видалення:", cart.getTotalItems());
+*/
