@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Webpack CSS Test</title>
+</head>
+<body>
+    <div style="border: 1px solid #ccc; padding: 20px; border-radius: 8px; max-width: 400px; margin: 20px auto; font-family: sans-serif;">
+  <h2>Профіль користувача</h2>
+  <p><strong>Ім'я:</strong> {{ name }}</p>
+  <p><strong>Email:</strong> {{ email }}</p>
+  <p><strong>Вік:</strong> {{ age }}</p>
+  <p><strong>Про себе:</strong> {{ bio }}</p>
+</div>
+    <h1>Привіт, Webpack!</h1>
+    <!-- Підключаємо зібраний бандл -->
+    <script src="dist/index.js"></script>
+</body>
+</html>

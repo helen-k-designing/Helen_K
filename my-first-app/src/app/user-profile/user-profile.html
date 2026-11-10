@@ -1,0 +1,30 @@
+<div style="border: 1px solid #ccc; padding: 20px; border-radius: 8px; max-width: 450px; margin: 20px auto; font-family: sans-serif;">
+  
+  <!-- Аватарка (прив'язка атрибута [src]) -->
+  <img [src]="avatarUrl" alt="Avatar" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: 15px;">
+  
+  <!-- Ім'я та роль -->
+  <h2>{{ username }}</h2>
+  <p style="color: #666; font-weight: bold;">{{ role }}</p>
+  
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+
+  <!-- Контактні дані та біографія з попереднього завдання -->
+  <p><strong>Email:</strong> {{ email }}</p>
+  <p><strong>Вік:</strong> {{ age }}</p>
+  <p><strong>Про себе:</strong> {{ bio }}</p>
+
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+
+  <!-- Навички з нового завдання -->
+  <p><strong>Базові навички:</strong> {{ skillsCount }}</p>
+  <p><strong>Загальний індекс навичок (skillsCount * 2):</strong> {{ skillsCount * 2 }}</p>
+
+  <!-- Кнопка з динамічним блокуванням та статусом -->
+  <button [disabled]="!isOnline" style="padding: 10px 15px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 4px;">
+    Надіслати повідомлення
+  </button>
+  
+  <p *ngIf="!isOnline" style="color: gray; font-size: 12px; margin-top: 5px;">Користувач зараз не в мережі</p>
+  <p *ngIf="isOnline" style="color: green; font-size: 12px; margin-top: 5px;">Користувач онлайн</p>
+</div>

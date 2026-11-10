@@ -1,142 +1,253 @@
-body {
-    font-family: sans-serif;
-    display: flex;
-    gap: 20px;
-    padding: 20px;
+/* --- 1. Базові налаштування та змінні --- */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --error-color: #ef4444;
+    --success-color: #22c55e;
+}
+
+* {
+    box-sizing: border-box;
     margin:
         0;
-    background: #f9f9f9;
+    padding:
+        0;
 }
 
-.sidebar {
-    width: 260px;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fff;
+}
+
+/* --- 2. Головний контейнер (Сітка додатка) --- */
+.app-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .app-container {
+        grid-template-columns: 3fr 1fr;
+        /* Каталог ліворуч, кошик праворуч */
+    }
+}
+
+/* --- 3. Панель фільтрів та пошуку --- */
+.filters-panel {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
 }
 
-.sidebar h3 {
-    margin:
-        0 0 10px 0;
-    font-size: 1.1em;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
+.filters-panel input,
+.filters-panel select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
 }
 
-.filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.filters-panel input [type="text"] {
+    flex:
+        1;
+    min-width: 200px;
 }
 
-.price-inputs {
+.category-group {
     display: flex;
     gap: 10px;
 }
 
-.price-inputs input {
-    width: 100%;
-    padding: 5px;
-}
-
-.search-input,
-.sort-select {
-    padding: 8px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.count-badge {
-    background: #eee;
-    font-size: 0.8em;
-    padding: 2px 6px;
-    border-radius: 10px;
-    float: right;
-    color: #555;
-}
-
-.content {
-    flex-grow:
-        1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 85vh;
-}
-
-.products-list {
+/* --- 4. Каталог товарів (Грід карток) --- */
+.products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 15px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
 }
 
 .product-card {
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fff;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
     box-shadow:
-        0 2px 4px rgba(0,
+        0 10px 15px -3px rgba(0,
             0,
-            0, 0.02);
+            0, 0.05);
+}
+
+.product-card h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
 .product-price {
+    font-size: 18px;
     font-weight: bold;
-    color: #2c3e50;
-    margin: 8px 0;
+    color: var(--primary-color);
+    margin-bottom: 5px;
 }
 
 .product-category {
-    color: #888;
-    font-size: 0.85em;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
 }
 
-/* СТИЛІ ПАГІНАЦІЇ */
-.pagination {
-    display: flex;
-    gap: 5px;
-    justify-content: center;
-    margin-top: auto;
-    padding: 20px 0;
-}
-
-page-btn {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    background: #fff;
+button {
     cursor: pointer;
-    border-radius: 4px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.btn-add-to-cart {
+    background: var(--primary-color);
+    color: #fff;
+    width: 100%;
+}
+
+.btn-add-to-cart:hover {
+    background: var(--primary-hover);
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 30px;
+}
+
+.page-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 6px 12px;
 }
 
 .page-btn.active {
-    background: #007bff;
-    color: white;
-    border-color: #007bff;
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
 }
 
 .page-btn:disabled {
-    background: #eee;
+    opacity: 0.5;
     cursor: not-allowed;
-    color: #aaa;
 }
 
-/* КНОПКА СКИДАННЯ */
-.clear-btn {
-    padding: 10px;
-    background: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+/* --- 6. Кошик покупок --- */
+.cart-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    height: fit-content;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cart-item-controls button {
+    padding: 2px 8px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+}
+
+.cart-total-block {
+    margin-top: 20px;
     font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.clear-btn:hover {
-    background: #bd2130;
+/* --- 7. Форма оформлення замовлення --- */
+.order-form-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 30px;
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    outline: none;
+}
+
+/* Помилки валідації */
+.error-text {
+    color: var(--error-color);
+    font-size: 12px;
+    margin-top: 4px;
+    height: 16px;
+    /* Запобігає смиканню інтерфейсу */
+}
+
+.btn-submit-order {
+    background: var(--success-color);
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-submit-order:hover {
+    background: #16a34a;
 }
