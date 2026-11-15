@@ -1,0 +1,107 @@
+<section class="blog-section" id="blog">
+  <div class="blog-container">
+    <!-- Заголовок -->
+    <header class="blog-header">
+      <span class="eyebrow">БЛОГ ТА НОТАТКИ</span>
+      <h2 class="blog-title">На межі естетики та коду</h2>
+      <p class="blog-subtitle">
+        Думки про фронтенд-розробку, архітектуру інтерфейсів та досвід переходу з дизайну одягу в IT.
+      </p>
+    </header>
+
+    <!-- Панель фільтрів і пошуку -->
+    <div class="controls-bar">
+      <div class="category-pills">
+        @for (cat of categories; track cat.id) {
+          <button
+            type="button"
+            class="pill-btn"
+            [class.active]="selectedCategory() === cat.id"
+            (click)="setCategory(cat.id)">
+            {{ cat.label }}
+          </button>
+        }
+      </div>
+
+      <div class="search-wrapper">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Пошук за темою або тегом..."
+          [ngModel]="searchQuery()"
+          (ngModelChange)="searchQuery.set($event)" />
+      </div>
+    </div>
+
+    <!-- Сітка карток -->
+    <div class="posts-grid">
+      @for (post of filteredPosts(); track post.id) {
+        <article class="post-card" (click)="openPost(post)">
+          @if (post.imageUrl) {
+            <div class="card-image-wrap">
+              <img [src]="post.imageUrl" [alt]="post.title" loading="lazy" />
+              <span class="category-badge">{{ post.categoryLabel }}</span>
+            </div>
+          }
+
+          <div class="card-body">
+            @if (!post.imageUrl) {
+              <div class="card-top-meta">
+                <span class="category-badge static">{{ post.categoryLabel }}</span>
+                <span class="meta-text">{{ post.date }} · {{ post.readTime }}</span>
+              </div>
+            } @else {
+              <div class="meta-text mb-2">{{ post.date }} · {{ post.readTime }}</div>
+            }
+
+            <h3 class="card-title">{{ post.title }}</h3>
+            <p class="card-excerpt">{{ post.excerpt }}</p>
+
+            <div class="card-footer">
+              <div class="tags-list">
+                @for (tag of post.tags; track tag) {
+                  <span class="tag">#{{ tag }}</span>
+                }
+              </div>
+              <span class="read-arrow">↗</span>
+            </div>
+          </div>
+        </article>
+      } @empty {
+        <div class="empty-state">
+          За вашим запитом дописів не знайдено. Спробуйте змінити фільтр.
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Модальне вікно для читання статті -->
+  @if (activePost(); as post) {
+    <div class="modal-backdrop" (click)="closePost()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <button type="button" class="close-btn" (click)="closePost()">✕</button>
+
+        <div class="modal-meta">
+          <span class="category-badge static">{{ post.categoryLabel }}</span>
+          <span class="meta-text">{{ post.date }} · {{ post.readTime }} читання</span>
+        </div>
+
+        <h2 class="modal-title">{{ post.title }}</h2>
+
+        @if (post.imageUrl) {
+          <img [src]="post.imageUrl" [alt]="post.title" class="modal-image" />
+        }
+
+        <div class="modal-text">
+          @for (paragraph of post.content; track $index) {
+            <p>{{ paragraph }}</p>
+          }
+        </div>
+
+        @if (post.codeSnippet) {
+          <pre class="code-block"><code>{{ post.codeSnippet }}</code></pre>
+        }
+      </div>
+    </div>
+  }
+</section>

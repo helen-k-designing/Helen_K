@@ -1,0 +1,101 @@
+/* =====================================
+   FOOTER COMPONENT STYLES
+===================================== */
+
+.site-footer {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-top: 25px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(220, 183, 255, 0.2);
+  color: #ffffff;
+  font-size: 12px;
+  width: 100%;
+}
+
+.site-footer .logo {
+  font-size: 13px;
+  letter-spacing: 4px;
+  justify-self: start;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  justify-self: center;
+}
+
+.footer-nav a {
+  color: #e5cef7;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: #ffffff;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: end;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e5cef7;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.social-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  .site-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 15px;
+    padding-top: 12px;
+  }
+
+  .site-footer .logo {
+    justify-self: auto;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 12px;
+    justify-self: auto;
+  }
+
+  .social-links {
+    justify-self: auto;
+    margin-top: 2px;
+  }
+}

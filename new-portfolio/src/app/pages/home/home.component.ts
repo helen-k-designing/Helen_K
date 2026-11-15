@@ -1,17 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
-export class Home {
-  featuredProjects = [
-    { title: 'Проєкт 1', description: 'Сучасний вебдодаток на Angular' },
-    { title: 'Проєкт 2', description: 'Інтерактивна галерея та компоненти' },
-    { title: 'Проєкт 3', description: 'Корпоративний сайт та блог' }
-  ];
+export class HomeComponent implements OnInit, AfterViewInit {
+  private viewportScroller = inject(ViewportScroller);
+
+  ngOnInit(): void {
+    // Примусово скидаємо скрол на самий верх при ініціалізації
+    this.viewportScroller.scrollToPosition([0, 0]);
+    window.scrollTo(0, 0);
+  }
+
+  ngAfterViewInit(): void {
+    // Повторне скидання після повної побудови представлення (на випадок асинхронного завантаження)
+    setTimeout(() => {
+      this.viewportScroller.scrollToPosition([0, 0]);
+      window.scrollTo(0, 0);
+    }, 0);
+  }
 }
