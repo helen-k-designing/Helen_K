@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+type OrderStatus = 'pending' | 'shipping' | 'delivered' | 'cancelled';
+
 @Component({
   selector: 'app-user-profile',
   standalone: true,
@@ -9,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './user-profile.css'
 })
 export class UserProfileComponent {
-  // Дані з обох завдань
+ // --- Ваші попередні дані картки ---
   username = 'Олена';
   role = 'Frontend Developer';
   email = 'olena@example.com';
@@ -18,4 +20,17 @@ export class UserProfileComponent {
   avatarUrl = 'my-photo.jpg';
   isOnline = true;
   skillsCount = 5;
+  isLoggedIn = true;
+
+  // --- ЛОГІКА ДЛЯ ЗАВДАННЯ 1 (Деталі) ---
+  showDetails = false;
+  toggleDetails() {
+    this.showDetails = !this.showDetails;
+  }
+
+  // --- ЛОГІКА ДЛЯ ЗАВДАННЯ 2 (Статус замовлення) ---
+  orderStatus: OrderStatus = 'pending';
+  changeStatus(status: OrderStatus) {
+    this.orderStatus = status;
+  }
 }
