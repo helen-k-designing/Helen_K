@@ -1,16 +1,17 @@
-import { Component, OnInit, AfterViewInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ViewportScroller } from '@angular/common';
+import { Component, OnInit, AfterViewInit, inject, signal } from '@angular/core';
+import { CommonModule, ViewportScroller } from '@angular/common';
+import { ChatModalComponent } from '../../chat-modal/chat-modal.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,],
+  imports: [CommonModule, ChatModalComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   private viewportScroller = inject(ViewportScroller);
+  isChatOpen = signal(false);
 
   ngOnInit(): void {
     // Примусово скидаємо скрол на самий верх при ініціалізації

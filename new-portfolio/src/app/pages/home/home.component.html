@@ -26,9 +26,9 @@
   <!-- БЛОК КНОПОК: під всією героїчною секцією -->
   <section>
     <div class="hero-actions-bar">
-      <a class="btn btn-light" href="#contact">
+      <button type="button" class="btn btn-light" (click)="isChatOpen.set(true)">
         Задати питання →
-      </a>
+      </button>
     </div>
   </section>
 
@@ -89,3 +89,7 @@
       </article>
     </div>
   </section>
+  
+  @if (isChatOpen()) {
+  <app-chat-modal (close)="isChatOpen.set(false)"></app-chat-modal>
+}

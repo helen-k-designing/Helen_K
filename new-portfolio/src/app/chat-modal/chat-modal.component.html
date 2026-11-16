@@ -1,0 +1,87 @@
+<div class="chat-backdrop" (click)="onClose()">
+  <div class="chat-window" (click)="$event.stopPropagation()">
+    
+    <!-- Шапка чату -->
+    <div class="chat-header">
+      <div class="chat-studio-info">
+        <div class="status-dot"></div>
+        <div>
+          <h3>PORTFOLIO</h3>
+          <span>Онлайн-асистент</span>
+        </div>
+      </div>
+      <button class="chat-close-btn" (click)="onClose()" aria-label="Закрити чат">✕</button>
+    </div>
+
+    <!-- Швидкий перехід у месенджери -->
+    <div class="quick-messengers">
+      <span class="quick-label">Або напиши напряму:</span>
+      <div class="messenger-links">
+        <a [href]="whatsappUrl" target="_blank" rel="noopener" class="messenger-chip whatsapp">
+          WhatsApp ↗
+        </a>
+        <a [href]="signalUrl" target="_blank" rel="noopener" class="messenger-chip signal">
+          Signal ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- Стрічка повідомлень -->
+    <div class="chat-messages">
+      @for (msg of messages(); track $index) {
+        <div class="message-bubble" [class.user]="msg.sender === 'user'" [class.studio]="msg.sender === 'studio'">
+          <p>{{ msg.text }}</p>
+          <span class="msg-time">{{ msg.time }}</span>
+        </div>
+      }
+    </div>
+
+    <!-- Форма контактів та введення повідомлення -->
+    <form class="chat-form" (ngSubmit)="sendMessage()">
+      @if (!isSent()) {
+        <div class="contact-setup">
+          <input 
+            type="text" 
+            placeholder="Твоє ім'я" 
+            [ngModel]="userName()" 
+            (ngModelChange)="userName.set($event)" 
+            name="userName"
+            class="chat-input"
+          />
+
+          <div class="method-tabs">
+            <button type="button" [class.active]="contactMethod() === 'Email'" (click)="selectMethod('Email')">Email</button>
+            <button type="button" [class.active]="contactMethod() === 'WhatsApp'" (click)="selectMethod('WhatsApp')">WhatsApp</button>
+            <button type="button" [class.active]="contactMethod() === 'Signal'" (click)="selectMethod('Signal')">Signal</button>
+          </div>
+
+          <input 
+            type="text" 
+            [placeholder]="contactPlaceholder" 
+            [ngModel]="userContact()" 
+            (ngModelChange)="userContact.set($event)" 
+            name="userContact"
+            required
+            class="chat-input"
+          />
+        </div>
+      }
+
+      <div class="message-input-row">
+        <input 
+          type="text" 
+          placeholder="Напиши своє запитання..." 
+          [ngModel]="currentMessage()" 
+          (ngModelChange)="currentMessage.set($event)" 
+          name="currentMessage"
+          required
+          class="chat-input msg-field"
+        />
+        <button type="submit" class="send-btn" [disabled]="isSending() || !userContact().trim() || !currentMessage().trim()">
+          ➤
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
