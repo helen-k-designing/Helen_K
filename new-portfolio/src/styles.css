@@ -188,3 +188,12 @@ img {
     letter-spacing: 0.8px;
   }
 }
+
+.your-arrow-class { /* Заміни .your-arrow-class на свій клас або тег стрілочки */
+  -webkit-appearance: none; /* Вимикає мобільні стилі для Safari/iOS */
+  appearance: none;
+  background: transparent;  /* Прибирає фонову кнопочку */
+  border: none;             /* Прибирає рамки */
+  /* Задай точний розмір шрифту, щоб вона не здавалася величезною */
+  font-size: 16px;          
+}
