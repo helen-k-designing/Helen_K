@@ -1,6 +1,6 @@
 <!-- HEADER — класичний вигляд -->
 <header class="header">
-  <div class="logo">Portfolio</div>
+  <a routerLink="/" class="logo">Portfolio</a>
   
   <nav class="nav-menu">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Головна</a>
@@ -9,7 +9,7 @@
     <a routerLink="/contact" routerLinkActive="active">Контакти</a>
   </nav>
 
-  <a class="btn btn-light" routerLink="/blog" routerLinkActive="active">Блог ↗</a>
+  <a class="btn btn-light" routerLink="/blog" routerLinkActive="active">Блог →</a>
 
   <button class="mobile-menu-btn" (click)="toggleMenu()" aria-label="Відкрити меню">
     <span></span>
@@ -37,7 +37,7 @@
       </nav>
 
       <div class="mobile-menu-footer">
-        <a routerLink="/blog" class="btn btn-light mobile-blog-btn" (click)="closeMenu()">Блог ↗</a>
+        <a routerLink="/blog" class="btn btn-light mobile-blog-btn" (click)="closeMenu()">Блог →</a>
       </div>
     </div>
   </div>
