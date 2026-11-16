@@ -7,13 +7,13 @@
   color: #ffffff;
   font-family: inherit;
   width: 100%;
+  letter-spacing: 0.6px;
 }
 
 .blog-container {
   max-width: 1300px;
   margin: 0 auto;
 }
-
 
 .blog-header {
   margin-bottom: 2.5rem;
@@ -22,26 +22,28 @@
 .eyebrow {
   color: #e9d3fa;
   font-size: 11px;
-  letter-spacing: 2px;
   text-transform: uppercase;
   display: block;
   margin-bottom: 6px;
+  letter-spacing: 3.5px; /* Широкий трекінг для ейбров */
+  font-weight: 300;
 }
 
 .blog-title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 2.3rem);
+  font-weight: 600;
   margin: 0 0 0.75rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 2.2px; /* Широкий заголовок */
   color: #ffffff;
 }
 
 .blog-subtitle {
   color: rgba(255, 255, 255, 0.75);
-  max-width: 600px;
+  max-width: 400px;
   line-height: 1.6;
-  font-size: 14px;
+  font-size: 15px;
   margin: 0;
+  letter-spacing: 1.1px; /* Ширший підзаголовок */
 }
 
 /* Фільтри та пошук */
@@ -67,6 +69,7 @@
   padding: 8px 18px;
   border-radius: 999px;
   font-size: 13px;
+  letter-spacing: 1.2px; /* Ширший текст на кнопках фільтрів */
   cursor: pointer;
   transition: all 0.25s ease;
   outline: none !important;
@@ -84,6 +87,11 @@
   font-weight: 500;
 }
 
+.search-wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .search-input {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -91,6 +99,7 @@
   padding: 9px 20px;
   color: #ffffff;
   font-size: 13px;
+  letter-spacing: 1.2px; /* Ширший текст у пошуку */
   min-width: 260px;
   outline: none !important;
   transition: border-color 0.25s ease, background 0.25s ease;
@@ -98,6 +107,7 @@
 
 .search-input::placeholder {
   color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 1px;
 }
 
 .search-input:focus {
@@ -160,6 +170,7 @@
   padding: 4px 12px;
   border-radius: 999px;
   font-size: 11px;
+  letter-spacing: 1.1px;
   color: #ffffff;
 }
 
@@ -184,6 +195,7 @@
 .meta-text {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.8px;
 }
 
 .mb-2 {
@@ -192,6 +204,7 @@
 
 .card-title {
   font-size: 1.25rem;
+  letter-spacing: 1.4px; /* Широкі заголовки карток */
   font-weight: 500;
   line-height: 1.4;
   margin: 0 0 0.75rem;
@@ -204,6 +217,7 @@
   line-height: 1.6;
   margin: 0 0 1.5rem;
   flex: 1;
+  letter-spacing: 0.8px;
 }
 
 .card-footer {
@@ -223,10 +237,12 @@
 .tag {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 1px;
 }
 
 .read-arrow {
   font-size: 1.1rem;
+  letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.8);
   transition: transform 0.2s ease;
 }
@@ -294,6 +310,7 @@
 .modal-title {
   font-size: 1.75rem;
   font-weight: 500;
+  letter-spacing: 1.5px; /* Ширший заголовок в модалці */
   margin: 0 0 1.5rem;
   line-height: 1.3;
   color: #ffffff;
@@ -311,6 +328,7 @@
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
+  letter-spacing: 1.1px; /* Ширший текст статті */
   margin-bottom: 1rem;
 }
 
@@ -322,12 +340,9 @@
   overflow-x: auto;
   font-family: 'Fira Code', monospace;
   font-size: 13px;
+  letter-spacing: 1px;
   color: #d8b4fe;
   margin-top: 1.5rem;
-}
-.search-wrapper {
-  display: flex;
-  align-items: center;
 }
 
 .empty-state {
@@ -339,4 +354,131 @@
   border-radius: 16px;
   color: rgba(255, 255, 255, 0.6);
   font-size: 14px;
+  letter-spacing: 1.1px;
+}
+
+
+/* =====================================
+   TABLET ADAPTIVE (577px - 992px)
+===================================== */
+@media (min-width: 577px) and (max-width: 992px) {
+  .blog-section {
+    padding: 2rem 1.2rem;
+  }
+
+  .blog-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.1rem);
+    letter-spacing: 1.8px;
+  }
+
+  .posts-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки на планшеті */
+    gap: 1.2rem;
+  }
+
+  .search-input {
+    min-width: 220px;
+  }
+}
+
+
+/* =====================================
+   MOBILE ADAPTIVE (<= 576px)
+===================================== */
+@media (max-width: 576px) {
+  .blog-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .blog-header {
+    margin-bottom: 1.8rem;
+  }
+
+  .blog-title {
+    font-size: 1.7rem;
+    letter-spacing: 1.4px;
+  }
+
+  .blog-subtitle {
+    font-size: 14px;
+  }
+
+  .controls-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .search-wrapper,
+  .search-input {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .posts-grid {
+    grid-template-columns: 1fr; /* 1 колонка на мобільних */
+    gap: 1rem;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+    max-height: 90vh;
+  }
+
+  .modal-title {
+    font-size: 1.4rem;
+  }
+
+  .modal-image {
+    height: 200px;
+  }
+}
+
+
+/* =====================================
+   SMALLEST MOBILE ADAPTIVE (<= 400px, ~320px-330px)
+===================================== */
+@media (max-width: 400px) {
+  .blog-section {
+    padding: 1rem 0.5rem;
+  }
+
+  .blog-title {
+    font-size: 1.5rem;
+    letter-spacing: 1.2px;
+  }
+
+  .blog-subtitle {
+    font-size: 13px;
+  }
+
+  .pill-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  .search-input {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .card-body {
+    padding: 1.2rem;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+  }
+
+  .modal-content {
+    padding: 1.2rem;
+  }
+
+  .close-btn {
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+  }
 }

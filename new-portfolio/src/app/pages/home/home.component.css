@@ -1,5 +1,5 @@
 /* =====================================
-   VIOLET STUDIO — MAIN DESIGN
+   VIOLET STUDIO — HOME PAGE DESIGN
 ===================================== */
 
 .hero-split {
@@ -13,6 +13,8 @@
 
 /* Ліва колонка з логотипом */
 .hero-left-column {
+  display: flex;
+  flex-direction: column;
   flex-shrink: 0;
 }
 
@@ -24,38 +26,39 @@
   width: 100%;
   height: auto;
   display: block;
+  margin-top: 25px;
 }
 
-/* Права колонка з текстом — розтягується на весь вільний простір */
+/* Права колонка з текстом */
 .hero-right-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  min-width: 0; /* Дозволяє тексту коректно переноситися і не виштовхувати контейнер */
+  min-width: 0;
 }
 
 .hero-right-content h1 {
-  margin: 0 0 8px;
-  font-size: clamp(20px, 4.2vw, 56px);
-  line-height: 1.08;
-  letter-spacing: -0.5px;
-  font-weight: 400;
+  margin: 40px 0 8px;
+  font-size: clamp(20px, 4.2vw, 45px);
+  line-height: 1.2;
+  letter-spacing: 2.5px; /* Розширений трекінг для заголовка */
+  font-weight: 600;
   color: #ffffff;
 }
 
-.hero-right-content p {
+.hero-right-content h2 {
   color: #eadcf5;
-  font-size: clamp(11px, 1.2vw, 15px);
+  font-size: clamp(11px, 1.2vw, 30px);
   font-weight: 400;
-  line-height: 1.35;
-  letter-spacing: 0.2px;
+  line-height: 1.7;
+  letter-spacing: 1.5px; /* Ширший підзаголовок */
   margin: 0;
 }
 
 /* =====================================
-   SERVICES GRID
+   SERVICES GRID (Desktop >= 993px)
 ===================================== */
 
 .services {
@@ -71,6 +74,7 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
+  gap: 10px;
   padding: 16px 20px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 14px;
@@ -89,9 +93,9 @@
 
 .service-card h2 {
   margin: 0;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0.3px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1.5px; /* Ширші заголовки послуг */
   color: #ffffff;
 }
 
@@ -99,8 +103,9 @@
   display: block;
   margin-top: 4px;
   color: #eadcf5;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
+  letter-spacing: 1.1px; /* Ширший опис послуг */
 }
 
 .service-icon {
@@ -120,7 +125,6 @@
   font-size: 11px;
   color: #ffffff;
   flex-shrink: 0;
-  margin-left: auto;
 }
 
 .featured {
@@ -129,7 +133,7 @@
 }
 
 /* =====================================
-   PROJECTS
+   PROJECTS (Desktop >= 993px)
 ===================================== */
 
 .projects {
@@ -138,8 +142,8 @@
 
 .eyebrow {
   color: #e9d3fa;
-  font-size: 8.5px;
-  letter-spacing: 3.5px;
+  font-size: 9px;
+  letter-spacing: 4px; /* Дуже широкий трекінг для айбров */
   text-transform: uppercase;
   margin-bottom: 2px;
 }
@@ -154,17 +158,18 @@
 .section-heading h2 {
   margin: 0;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
-  letter-spacing: 0.3px;
+  letter-spacing: 1.8px;
 }
 
 .section-heading a {
   color: #ffffff;
-  font-size: 12px;
+  font-size: 14px;
   text-decoration: none;
   border-bottom: 1px solid #ffffff;
   padding-bottom: 1px;
+  letter-spacing: 1.2px;
 }
 
 .project-grid {
@@ -182,7 +187,8 @@
   border-radius: 12px;
   background: linear-gradient(135deg, #a777d6 0%, #68349c 100%);
   color: #ffffff;
-  font-size: 14px;
+  font-size: 15px;
+  letter-spacing: 1.5px; /* Ширший текст на картках проєктів */
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -196,61 +202,171 @@
 }
 
 /* =====================================
-   MOBILE ADAPTIVE (<= 768px)
+   TABLET ADAPTIVE (577px - 992px)
+   Зменшена копія з розширеним трекінгом
 ===================================== */
-
-@media (max-width: 768px) {
-
-  /* На мобільному зберігаємо двоколонкову структуру героїчної секції, але робимо відступи компактнішими */
+@media (min-width: 577px) and (max-width: 992px) {
   .hero-split {
-    gap: 15px;
-    padding: 20px 0 10px;
+    align-items: flex-start; /* Повертаємо вирівнювання по верху */
+    gap: 18px;
+    padding: 12px 0 10px;
+  }
+
+  .hero-logo-img-wrapper {
+    max-width: 135px;
+  }
+
+  .hero-logo-img {
+    margin-top: -15px; /* Змінюй це число: більше число — логотип нижче, менше (або 0) — вище */
   }
 
   .hero-right-content h1 {
-    font-size: clamp(20px, 5vw, 26px);
-    letter-spacing: -0.5px;
-    margin-bottom: 6px;
+    margin: 20px 0 6px;
+    font-size: clamp(22px, 3.2vw, 30px);
+    letter-spacing: 1.8px; /* Широкий заголовок на планшеті */
   }
 
-  .hero-right-content p {
-    font-size: 11.5px;
+  .hero-right-content h2 {
+    font-size: clamp(12px, 1.5vw, 15px);
+    line-height: 1.5;
+    letter-spacing: 1px; /* Ширший підзаголовок */
   }
 
-  .hero-left-column {
-    gap: 20px;
-  }
-
-  .hero-left-column .actions {
-    margin-top: 0;
-    gap: 8px;
-  }
-  
-  .btn {
-    padding: 7px 14px;
-    font-size: 12px;
-  }
-
-  /* Послуги в 1 стовпчик */
   .services {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    margin: 15px 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 14px 0 18px;
   }
 
   .service-card {
-    padding: 12px 16px;
+    padding: 11px 12px;
+    border-radius: 11px;
+  }
+
+  .service-card-left {
+    gap: 8px;
+  }
+
+  .service-icon {
+    font-size: 16px;
+  }
+
+  .service-card h2 {
+    font-size: 13.5px;
+    letter-spacing: 1.1px;
   }
 
   .service-card p {
-    display: none;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    margin-top: 2px;
+    line-height: 1.35;
   }
 
   .service-arrow {
-    margin-left: 0;
+    width: 20px;
+    height: 20px;
+    font-size: 9px;
   }
 
-  /* Проєкти у 3 колонки на мобільному */
+  .section-heading h2 {
+    font-size: 17px;
+    letter-spacing: 1.4px;
+  }
+
+  .section-heading a {
+    font-size: 12.5px;
+    letter-spacing: 1px;
+  }
+
+  .project-grid {
+    gap: 10px;
+  }
+
+  .project-card {
+    height: 95px;
+    padding: 10px;
+    font-size: 13px;
+    letter-spacing: 1.2px;
+  }
+}
+
+/* =====================================
+   MOBILE ADAPTIVE — LARGE & MEDIUM (<= 576px)
+===================================== */
+@media (max-width: 576px) {
+  .hero-split {
+    gap: 12px;
+    padding: 14px 0 10px;
+  }
+
+  .hero-logo-img-wrapper {
+    max-width: 115px;
+  }
+
+  .hero-logo-img {
+    margin-top: 10px;
+  }
+
+  .hero-right-content h1 {
+    margin: 16px 0 6px;
+    font-size: clamp(18px, 4.8vw, 24px);
+    letter-spacing: 1.4px;
+  }
+
+  .hero-right-content h2 {
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.8px;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 14px 0;
+  }
+
+  .service-card {
+    padding: 10px 14px;
+    border-radius: 12px;
+  }
+
+  .service-card-left {
+    gap: 10px;
+  }
+
+  .service-icon {
+    font-size: 16px;
+  }
+
+  .service-card h2 {
+    font-size: 15px;
+    letter-spacing: 1.2px;
+  }
+
+  .service-card p {
+    display: block;
+    font-size: 11.5px;
+    letter-spacing: 0.8px;
+    margin-top: 2px;
+  }
+
+  .service-arrow {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+  }
+
+  .section-heading h2 {
+    font-size: 16px;
+    letter-spacing: 1.2px;
+  }
+
+  .section-heading a {
+    font-size: 12px;
+    letter-spacing: 0.9px;
+  }
+
   .project-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
@@ -260,5 +376,78 @@
     height: 65px;
     color: transparent;
     padding: 6px;
+  }
+}
+
+/* =====================================
+   SMALLEST MOBILE ADAPTIVE (<= 400px, ~320px-330px)
+   Логотип вище, h1 нижче, h2 праворуч, розширений letter-spacing
+===================================== */
+@media (max-width: 400px) {
+  .hero-split {
+    flex-wrap: wrap;
+    align-items: flex-start; /* Вирівнювання по верху, щоб картинка була на місці */
+    gap: 8px;
+    padding: 8px 0 6px;
+  }
+
+  .hero-left-column {
+    flex: 0 0 auto;
+  }
+
+  .hero-logo-img-wrapper {
+    max-width: 90px;
+  }
+
+  .hero-logo-img {
+    margin-top: 0; /* Піднімаємо картинку вище у верхню частину */
+  }
+
+  .hero-right-content {
+    display: contents;
+  }
+
+  /* Перший заголовок праворуч від логотипа, опускаємо трохи нижче */
+  .hero-right-content h1 {
+    flex: 1 1 calc(100% - 100px);
+    margin: 4px 0 0 0; /* Опущено трохи нижче */
+    text-align: right;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: 1.2px; /* Широкі літери */
+  }
+
+  /* Другий заголовок знизу на всю ширину, вирівнювання ПРАВОРУЧ */
+  .hero-right-content h2 {
+    flex: 0 0 100%;
+    width: 100%;
+    text-align: right; /* Вирівнювання праворуч за твоїм запитом */
+    font-size: 11px;
+    line-height: 1.45;
+    margin-top: 8px;
+    letter-spacing: 0.8px;
+  }
+
+  .service-card {
+    padding: 9px 12px;
+  }
+
+  .service-card h2 {
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  .service-card p {
+    font-size: 10.5px;
+    letter-spacing: 0.6px;
+  }
+
+  .section-heading h2 {
+    font-size: 14px;
+    letter-spacing: 1.1px;
+  }
+
+  .project-card {
+    height: 56px;
   }
 }

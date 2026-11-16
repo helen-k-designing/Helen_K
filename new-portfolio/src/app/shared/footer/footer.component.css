@@ -10,14 +10,18 @@
   padding-top: 16px;
   border-top: 1px solid rgba(220, 183, 255, 0.2);
   color: #ffffff;
-  font-size: 12px;
+  font-size: clamp(11px, 1.2vw, 12px);
   width: 100%;
+  letter-spacing: 0.8px;
 }
 
 .site-footer .logo {
-  font-size: 13px;
-  letter-spacing: 4px;
+  font-size: clamp(14px, 1.8vw, 18px);
+  letter-spacing: 7px; /* Широкий логотип у футері */
   justify-self: start;
+  color: #e4d5ee;
+  text-shadow: 0 2px 10px rgba(215, 170, 255, 0.4);
+  font-weight: 600;
 }
 
 .footer-nav {
@@ -29,15 +33,15 @@
 }
 
 .footer-nav a {
-  color: #e5cef7;
-  font-weight: 400;
-  letter-spacing: 0.3px;
-  text-decoration: none;
+  color: #f6edfc;
+  font-size: clamp(12px, 1.4vw, 14px);
+  letter-spacing: 1.3px; /* Ширші пункти меню у футері */
   transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 .footer-nav a:hover {
-  color: #ffffff;
+  color: #d8aaff;
 }
 
 .social-links {
@@ -71,31 +75,119 @@
   height: 14px;
 }
 
-/* Responsive Footer */
-@media (max-width: 768px) {
+/* =====================================
+   TABLET FOOTER (577px - 992px)
+   Зменшений десктопний футер з розширеним трекінгом
+===================================== */
+@media (min-width: 577px) and (max-width: 992px) {
+  .site-footer {
+    margin-top: 20px;
+    padding-top: 14px;
+    gap: 10px;
+  }
+
+  .site-footer .logo {
+    font-size: 13.5px;
+    letter-spacing: 4.5px;
+  }
+
+  .footer-nav {
+    gap: 12px;
+  }
+
+  .footer-nav a {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .social-links {
+    gap: 7px;
+  }
+
+  .social-links a {
+    width: 26px;
+    height: 26px;
+  }
+
+  .social-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* =====================================
+   MOBILE FOOTER (<= 576px)
+   3 рядочки по центру
+===================================== */
+@media (max-width: 576px) {
   .site-footer {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: 12px;
-    margin-top: 15px;
-    padding-top: 12px;
+    margin-top: 16px;
+    padding-top: 14px;
   }
 
   .site-footer .logo {
     justify-self: auto;
+    font-size: 15px;
+    letter-spacing: 6px;
   }
 
   .footer-nav {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 12px;
+    justify-content: center;
+    gap: 12px 16px;
     justify-self: auto;
+  }
+
+  .footer-nav a {
+    font-size: 13px;
+    letter-spacing: 1.1px;
   }
 
   .social-links {
     justify-self: auto;
+    justify-content: center;
     margin-top: 2px;
+  }
+}
+
+/* =====================================
+   SMALLEST MOBILE FOOTER (<= 400px, ~320px-330px)
+   Зменшений текст та легкий розширений трекінг
+===================================== */
+@media (max-width: 400px) {
+  .site-footer {
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 12px;
+  }
+
+  .site-footer .logo {
+    font-size: 12.5px;
+    letter-spacing: 5px;
+  }
+
+  .footer-nav {
+    gap: 8px 12px;
+  }
+
+  .footer-nav a {
+    font-size: 11px;
+    letter-spacing: 0.9px;
+  }
+
+  .social-links a {
+    width: 26px;
+    height: 26px;
+  }
+
+  .social-icon {
+    width: 12px;
+    height: 12px;
   }
 }

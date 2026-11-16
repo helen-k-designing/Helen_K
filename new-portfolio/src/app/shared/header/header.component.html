@@ -2,12 +2,12 @@
   <header class="header">
     <div class="logo">Portfolio</div>
     
-    <nav>
-      <a href="#services">Головна</a>
-      <a href="#about">Про мене</a>
-      <a href="#projects">Галерея</a>
-      <a href="#contact">Контакти</a>
-    </nav>
+    <nav class="nav-menu">
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Головна</a>
+  <a routerLink="/gallery" routerLinkActive="active">Галерея</a>
+  <a routerLink="/about" routerLinkActive="active">Про мене</a>
+  <a routerLink="/contact" routerLinkActive="active">Контакти</a>
+</nav>
 
     <a class="btn btn-light" routerLink="/blog" routerLinkActive="active">Блог ↗</a>
 
