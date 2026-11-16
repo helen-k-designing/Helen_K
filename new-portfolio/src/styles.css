@@ -84,6 +84,7 @@ img {
   gap: 20px;                   /* <--- Додає акуратну відстань між секціями замість розриву */
   width: 100%;
   max-width: 1400px;
+  min-height: 100dvh;          /* <--- Замінили calc(...) на чистий висотний мінімум */
   margin: 0 auto;
   padding: clamp(16px, 3vw, 40px) clamp(14px, 3.5vw, 48px);
   border-radius: clamp(16px, 2.5vw, 28px);
@@ -93,9 +94,6 @@ img {
     radial-gradient(ellipse at 75% 25%, rgba(130, 65, 177, 0.6), transparent 50%),
     linear-gradient(135deg, #241037 0%, #462064 55%, #512477 100%);
   box-shadow: 0 20px 60px rgba(49, 18, 75, 0.35);
-  /* ОСЬ ТУТ ГОЛОВНА МАГІЯ: */
-  min-height: calc(100dvh - 32px); /* Займає мінімум весь екран (мінус невеликі відступи) */
-  height: auto;                     /* Дозволяє автоматично збільшуватись, якщо контенту багато */
 }
 
 /* BUTTONS & LINKS */
@@ -177,9 +175,10 @@ img {
   }
 
   .page {
-    min-height: auto;
     padding: 16px 12px;
     border-radius: 16px;
+    min-height: calc(100dvh - 32px); /* Займає мінімум весь екран (мінус невеликі відступи) */
+    height: auto;                     /* Дозволяє автоматично збільшуватись, якщо контенту багато */
   }
 
   .btn {

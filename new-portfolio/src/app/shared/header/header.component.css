@@ -1,269 +1,152 @@
 /* =====================================
-   HEADER COMPONENT STYLES
+   HEADER COMPONENT STYLES (Десктоп / Планшет)
+   Один рядок: Логотип зліва -> Меню по центру/праворуч -> Блог крайній праворуч
 ===================================== */
+
+:host {
+  display: block;
+  width: 100%;
+}
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
   width: 100%;
+  
+  /* --- Стиль картки (Glassmorphism) --- */
+  padding: 16px 28px;
+  background: rgba(40, 18, 62, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(226, 197, 245, 0.25);
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(25, 8, 40, 0.3);
+  gap: 20px;
 }
 
 .logo {
   color: #d0ade8;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
-  letter-spacing: 7px;
+  letter-spacing: 5px;
   text-transform: uppercase;
   text-shadow: 0 2px 10px rgba(215, 170, 255, 0.4);
+  text-decoration: none;
   white-space: nowrap;
 }
 
-.header nav {
+/* Меню на десктопі */
+.header-nav-row {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 8px;
+  margin-left: auto; /* Притискає меню та кнопку до правого боку */
 }
 
-.header nav a {
+.header-nav-row a {
   color: #f6edfc;
-  font-size: 15px;
-  letter-spacing: 1.4px;
-  transition: color 0.3s ease;
-  white-space: nowrap;
-}
-
-.header nav a:hover,
-.header nav a.active {
-  color: #d8aaff;
-}
-
-.mobile-menu-btn {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 18px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.mobile-menu-btn span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: #ffffff;
-  border-radius: 2px;
-}
-
-/* =====================================
-   MOBILE POPUP MODAL (Спливаюче вікно)
-===================================== */
-
-.mobile-menu-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 7, 30, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  animation: fadeInBackdrop 0.25s ease forwards;
-}
-
-.mobile-menu-modal {
-  width: 100%;
-  max-width: 380px;
-  background: linear-gradient(145deg, #28123e 0%, #3d1b5c 100%);
-  border: 1px solid rgba(226, 197, 245, 0.25);
-  border-radius: 24px;
-  padding: 24px 20px 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  animation: slideUpModal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.mobile-menu-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.mobile-menu-top .logo {
-  font-size: 15px;
-  letter-spacing: 5px;
-}
-
-.mobile-close-btn {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.25s ease, transform 0.2s ease;
-}
-
-.mobile-close-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-  transform: scale(1.05);
-}
-
-.mobile-nav-links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  padding: 28px 0;
-}
-
-.mobile-nav-links a {
-  color: #f6edfc;
-  font-size: 17px;
+  font-size: 13.5px;
   font-weight: 500;
-  letter-spacing: 2px; /* Виразний розширений трекінг для пунктів меню */
-  padding: 6px 16px;
-  border-radius: 12px;
-  transition: color 0.25s ease, background 0.25s ease;
+  letter-spacing: 1px;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 10px;
+  transition: color 0.3s ease, background 0.3s ease;
+  white-space: nowrap;
 }
 
-.mobile-nav-links a:hover,
-.mobile-nav-links a.active {
+.header-nav-row a:hover,
+.header-nav-row a.active {
   color: #d8aaff;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.mobile-menu-footer {
-  display: flex;
-  justify-content: center;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+/* Кнопка Блог на десктопі стоїть останньою праворуч */
+.header-blog-btn {
+  margin-left: 12px;
 }
 
-.mobile-blog-btn {
-  width: 100%;
-  padding: 11px 20px;
-  font-size: 14px;
-  letter-spacing: 1.5px;
-}
-
-@keyframes fadeInBackdrop {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUpModal {
-  from {
-    opacity: 0;
-    transform: translateY(16px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
 
 /* =====================================
-   TABLET HEADER (577px - 992px)
+   ПРОМІЖНИЙ РОЗМІР ДЛЯ ПЛАНШЕТІВ (576px — 992px)
 ===================================== */
-@media (min-width: 577px) and (max-width: 992px) {
+
+@media (min-width: 576px) and (max-width: 992px) {
   .header {
-    gap: 12px;
+    padding: 12px 20px;
   }
 
   .logo {
-    font-size: 17px;
-    letter-spacing: 5px;
+    font-size: 16px;
+    letter-spacing: 3.5px;
   }
 
-  .header nav {
-    gap: 14px;
-  }
-
-  .header nav a {
-    font-size: 13px;
-    letter-spacing: 1px;
-  }
-}
-
-/* =====================================
-   MOBILE HEADER (<= 576px)
-===================================== */
-@media (max-width: 576px) {
-  .header nav,
-  .header > .btn {
-    display: none; /* Ховаємо лише десктопні навігацію та кнопку */
-  }
-
-  .mobile-menu-btn {
-    display: flex;
-  }
-
-  .logo {
-    font-size: 15px;
-    letter-spacing: 5.5px;
-  }
-}
-
-/* =====================================
-   SMALLEST MOBILE HEADER (<= 400px, ~320px-330px)
-===================================== */
-@media (max-width: 400px) {
-  .logo {
-    font-size: 13.5px;
-    letter-spacing: 4.5px;
-  }
-
-  .mobile-menu-btn {
-    width: 19px;
-    height: 14px;
-  }
-
-  .mobile-menu-btn span {
-    height: 1.5px;
-  }
-
-  .mobile-menu-modal {
-    padding: 18px 16px 22px;
-    border-radius: 20px;
-  }
-
-  .mobile-menu-top .logo {
-    font-size: 13px;
-    letter-spacing: 4px;
-  }
-
-  .mobile-close-btn {
-    width: 30px;
-    height: 30px;
+  .header-nav-row a {
     font-size: 12px;
+    letter-spacing: 0.6px;
+    padding: 5px 8px;
+  }
+}
+
+
+/* =====================================
+   МОБІЛЬНИЙ РЕЖИМ (<= 575px, з оптимізацією від 320px)
+   Дворядковий макет: 
+   Рядок 1: Логотип зліва + Кнопка "Блог" праворуч
+   Рядок 2: Меню з прокруткою
+===================================== */
+
+@media (max-width: 575px) {
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 10px; /* Трохи компактніші відступи для 320px */
+    border-radius: 12px;
   }
 
-  .mobile-nav-links {
-    gap: 14px;
-    padding: 20px 0;
+  /* 1. Логотип у першому рядку */
+  .logo {
+    font-size: 13px; /* Компактний розмір для вузьких екранів */
+    letter-spacing: 2.5px;
+    flex: 0 0 auto;
   }
 
-  .mobile-nav-links a {
-    font-size: 15px;
-    letter-spacing: 1.6px;
+  /* 2. Кнопка "Блог" праворуч у першому рядку */
+  .header-blog-btn {
+    order: 1;
+    margin-left: auto;
+    padding: 4px 10px; /* Компактніша кнопка, щоб ідеально влізла на 320px */
+    font-size: 10.5px;
+    letter-spacing: 0.6px;
   }
 
-  .mobile-blog-btn {
-    padding: 9px 16px;
-    font-size: 13px;
+  /* 3. Навігаційне меню на другому рядку */
+  .header-nav-row {
+    order: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 0;
+    gap: 3px;
+    overflow-x: auto;
+    padding-top: 3px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    
+    /* Приховуємо смугу прокрутки для естетики на мобільних */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .header-nav-row::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  .header-nav-row a {
+    font-size: 11px; /* Мініатюрніші шрифти, щоб усі пункти легко вміщувалися */
+    letter-spacing: 0.3px;
+    padding: 3px 5px;
+    white-space: nowrap;
   }
 }

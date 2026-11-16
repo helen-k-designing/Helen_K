@@ -34,10 +34,11 @@
 
 .footer-nav a {
   color: #f6edfc;
-  font-size: clamp(12px, 1.4vw, 14px);
+  font-size: clamp(8px, 1.4vw, 12px);
   letter-spacing: 1.3px; /* Ширші пункти меню у футері */
   transition: color 0.3s ease;
   white-space: nowrap;
+  font-weight: 300;
 }
 
 .footer-nav a:hover {

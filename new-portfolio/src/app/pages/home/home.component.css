@@ -7,7 +7,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: clamp(12px, 3vw, 30px);
-  padding: 20px 0 15px;
+  padding: 8px 0 15px; /* Зменшили верхній відступ від хедера */
   width: 100%;
 }
 
@@ -26,7 +26,7 @@
   width: 100%;
   height: auto;
   display: block;
-  margin-top: 25px;
+  margin-top: 10px;
 }
 
 /* Права колонка з текстом */
@@ -40,10 +40,10 @@
 }
 
 .hero-right-content h1 {
-  margin: 40px 0 8px;
+  margin: 12px 0 8px; /* Компактний відступ для десктопа */
   font-size: clamp(20px, 4.2vw, 45px);
   line-height: 1.2;
-  letter-spacing: 2.5px; /* Розширений трекінг для заголовка */
+  letter-spacing: 2.5px;
   font-weight: 600;
   color: #ffffff;
 }
@@ -53,7 +53,7 @@
   font-size: clamp(11px, 1.2vw, 30px);
   font-weight: 400;
   line-height: 1.7;
-  letter-spacing: 1.5px; /* Ширший підзаголовок */
+  letter-spacing: 1.5px;
   margin: 0;
 }
 
@@ -95,7 +95,7 @@
   margin: 0;
   font-size: 18px;
   font-weight: 500;
-  letter-spacing: 1.5px; /* Ширші заголовки послуг */
+  letter-spacing: 1.5px;
   color: #ffffff;
 }
 
@@ -105,7 +105,7 @@
   color: #eadcf5;
   font-size: 14px;
   font-weight: 400;
-  letter-spacing: 1.1px; /* Ширший опис послуг */
+  letter-spacing: 1.1px;
 }
 
 .service-icon {
@@ -143,7 +143,7 @@
 .eyebrow {
   color: #e9d3fa;
   font-size: 9px;
-  letter-spacing: 4px; /* Дуже широкий трекінг для айбров */
+  letter-spacing: 4px;
   text-transform: uppercase;
   margin-bottom: 2px;
 }
@@ -188,7 +188,7 @@
   background: linear-gradient(135deg, #a777d6 0%, #68349c 100%);
   color: #ffffff;
   font-size: 15px;
-  letter-spacing: 1.5px; /* Ширший текст на картках проєктів */
+  letter-spacing: 1.5px;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -203,13 +203,13 @@
 
 /* =====================================
    TABLET ADAPTIVE (577px - 992px)
-   Зменшена копія з розширеним трекінгом
+   Пiднято вище до хедера
 ===================================== */
 @media (min-width: 577px) and (max-width: 992px) {
   .hero-split {
-    align-items: flex-start; /* Повертаємо вирівнювання по верху */
+    align-items: flex-start;
     gap: 18px;
-    padding: 12px 0 10px;
+    padding: 2px 0 10px; /* Зменшено верхній відступ для планшета */
   }
 
   .hero-logo-img-wrapper {
@@ -217,19 +217,19 @@
   }
 
   .hero-logo-img {
-    margin-top: -15px; /* Змінюй це число: більше число — логотип нижче, менше (або 0) — вище */
+    margin-top: -8px; /* Піднято логотип вище */
   }
 
   .hero-right-content h1 {
-    margin: 20px 0 6px;
+    margin: 4px 0 4px; /* Піднято заголовок значно вище до хедера */
     font-size: clamp(22px, 3.2vw, 30px);
-    letter-spacing: 1.8px; /* Широкий заголовок на планшеті */
+    letter-spacing: 1.8px;
   }
 
   .hero-right-content h2 {
     font-size: clamp(12px, 1.5vw, 15px);
     line-height: 1.5;
-    letter-spacing: 1px; /* Ширший підзаголовок */
+    letter-spacing: 1px;
   }
 
   .services {
@@ -293,11 +293,12 @@
 
 /* =====================================
    MOBILE ADAPTIVE — LARGE & MEDIUM (<= 576px)
+   Пiднято вище до хедера
 ===================================== */
 @media (max-width: 576px) {
   .hero-split {
     gap: 12px;
-    padding: 14px 0 10px;
+    padding: 2px 0 8px; /* Зменшено верхній відступ для мобільного */
   }
 
   .hero-logo-img-wrapper {
@@ -305,11 +306,11 @@
   }
 
   .hero-logo-img {
-    margin-top: 10px;
+    margin-top: 0; /* Прибрано зайвий відступ зверху для картинки */
   }
 
   .hero-right-content h1 {
-    margin: 16px 0 6px;
+    margin: 2px 0 4px; /* Піднято заголовок майже впритул до хедера */
     font-size: clamp(18px, 4.8vw, 24px);
     letter-spacing: 1.4px;
   }
@@ -380,74 +381,80 @@
 }
 
 /* =====================================
-   SMALLEST MOBILE ADAPTIVE (<= 400px, ~320px-330px)
-   Логотип вище, h1 нижче, h2 праворуч, розширений letter-spacing
+   SMALLEST MOBILE ADAPTIVE (<= 400px, від 320px)
+   Логотип і заголовок зверху, підзаголовок на всю ширину праворуч
 ===================================== */
 @media (max-width: 400px) {
   .hero-split {
     flex-wrap: wrap;
-    align-items: flex-start; /* Вирівнювання по верху, щоб картинка була на місці */
-    gap: 8px;
-    padding: 8px 0 6px;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 0 0 6px;
   }
 
   .hero-left-column {
     flex: 0 0 auto;
   }
 
+  /* Адаптивний розмір логотипа, що ідеально сідає навіть на 320px */
   .hero-logo-img-wrapper {
-    max-width: 90px;
+    max-width: 85px; 
   }
 
   .hero-logo-img {
-    margin-top: 0; /* Піднімаємо картинку вище у верхню частину */
+    margin-top: -2px;
   }
 
+  /* Контейнер розгортається на повну ширину */
   .hero-right-content {
-    display: contents;
-  }
-
-  /* Перший заголовок праворуч від логотипа, опускаємо трохи нижче */
-  .hero-right-content h1 {
-    flex: 1 1 calc(100% - 100px);
-    margin: 4px 0 0 0; /* Опущено трохи нижче */
-    text-align: right;
-    font-size: 16px;
-    line-height: 1.25;
-    letter-spacing: 1.2px; /* Широкі літери */
-  }
-
-  /* Другий заголовок знизу на всю ширину, вирівнювання ПРАВОРУЧ */
-  .hero-right-content h2 {
-    flex: 0 0 100%;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    text-align: right; /* Вирівнювання праворуч за твоїм запитом */
-    font-size: 11px;
-    line-height: 1.45;
-    margin-top: 8px;
-    letter-spacing: 0.8px;
+    align-items: flex-end;
   }
 
+  /* Заголовок h1 праворуч від логотипа */
+  .hero-right-content h1 {
+    flex: 1;
+    margin: -2px 0 0 0;
+    text-align: right;
+    font-size: 14.5px;
+    line-height: 1.2;
+    letter-spacing: 1px;
+  }
+
+  /* Підзаголовок h2 на всю ширину знизу, вирівняний праворуч */
+  .hero-right-content h2 {
+    width: 100%;
+    flex: 0 0 100%;
+    text-align: right; /* Суворе вирівнювання по правому краю */
+    font-size: 10.5px;
+    line-height: 1.4;
+    margin-top: 6px;
+    letter-spacing: 0.6px;
+  }
+
+  /* Компактні картки послуг */
   .service-card {
-    padding: 9px 12px;
+    padding: 8px 10px;
   }
 
   .service-card h2 {
+    font-size: 12px;
+    letter-spacing: 0.8px;
+  }
+
+  .service-card p {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .section-heading h2 {
     font-size: 13px;
     letter-spacing: 1px;
   }
 
-  .service-card p {
-    font-size: 10.5px;
-    letter-spacing: 0.6px;
-  }
-
-  .section-heading h2 {
-    font-size: 14px;
-    letter-spacing: 1.1px;
-  }
-
   .project-card {
-    height: 56px;
+    height: 52px;
   }
 }

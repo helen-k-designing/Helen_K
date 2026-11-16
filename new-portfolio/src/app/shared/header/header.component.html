@@ -1,44 +1,20 @@
-<!-- HEADER — класичний вигляд -->
 <header class="header">
-  <a routerLink="/" class="logo">Portfolio</a>
-  
-  <nav class="nav-menu">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Головна</a>
-    <a routerLink="/gallery" routerLinkActive="active">Галерея</a>
+  <!-- Верхній рядок: Логотип + Кнопка Блог -->
+  <div class="header-top-row">
+    <a routerLink="/" class="logo">PORTFOLIO</a>
+
+  </div>
+
+  <!-- Нижній рядок: Основна навігація сайту -->
+  <nav class="header-nav-row">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Головна</a>
     <a routerLink="/about" routerLinkActive="active">Про мене</a>
-    <a routerLink="/contact" routerLinkActive="active">Контакти</a>
+    <a routerLink="/gallery" routerLinkActive="active">Галерея</a>
+    <a routerLink="/contacts" routerLinkActive="active">Контакти</a>
   </nav>
 
-  <a class="btn btn-light" routerLink="/blog" routerLinkActive="active">Блог →</a>
+    <button type="button" class="btn btn-light">
+      Блог →
+    </button>
 
-  <button class="mobile-menu-btn" (click)="toggleMenu()" aria-label="Відкрити меню">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
 </header>
-
-<!-- Мобільне спливаюче вікно навігації -->
-@if (isMenuOpen()) {
-  <div class="mobile-menu-backdrop" (click)="closeMenu()">
-    <div class="mobile-menu-modal" (click)="$event.stopPropagation()">
-      <div class="mobile-menu-top">
-        <div class="logo">Portfolio</div>
-        <button class="mobile-close-btn" (click)="closeMenu()" aria-label="Закрити меню">
-          ✕
-        </button>
-      </div>
-
-      <nav class="mobile-nav-links">
-        <a routerLink="/" (click)="closeMenu()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Головна</a>
-        <a routerLink="/gallery" (click)="closeMenu()" routerLinkActive="active">Галерея</a>
-        <a routerLink="/about" (click)="closeMenu()" routerLinkActive="active">Про мене</a>
-        <a routerLink="/contact" (click)="closeMenu()" routerLinkActive="active">Контакти</a>
-      </nav>
-
-      <div class="mobile-menu-footer">
-        <a routerLink="/blog" class="btn btn-light mobile-blog-btn" (click)="closeMenu()">Блог →</a>
-      </div>
-    </div>
-  </div>
-}
