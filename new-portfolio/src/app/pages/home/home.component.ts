@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, inject, signal } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { ChatModalComponent } from '../../chat-modal/chat-modal.component';
-
 @Component({
   selector: 'app-home',
   standalone: true,
