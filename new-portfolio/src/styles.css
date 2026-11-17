@@ -89,7 +89,7 @@ select:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* ПРИМУСОВЕ СКАСУВАННЯ БІЛОГО ФОНУ АВТОЗАПОВНЕННЯ ДЛЯ МОБІЛЬНИХ ТА ДЕСКТОПІВ */
+/* ПРИМУСОВЕ ПЕРЕФАРБОВУВАННЯ АВТОЗАПОВНЕННЯ НА МОБІЛЬНИХ І ДЕСКТОПАХ */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -102,19 +102,7 @@ textarea:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px #411f61 inset !important;
   box-shadow: 0 0 0 1000px #411f61 inset !important;
   border-color: rgba(226, 197, 245, 0.35) !important;
-  -webkit-animation: autofillFix 0s forwards;
-  animation: autofillFix 0s forwards;
-}
-
-@keyframes autofillFix {
-  from {
-    background-color: #411f61;
-    color: #fdf8ff;
-  }
-  to {
-    background-color: #411f61;
-    color: #fdf8ff;
-  }
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 /* =====================================
