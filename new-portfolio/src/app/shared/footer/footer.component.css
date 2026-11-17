@@ -78,7 +78,6 @@
 
 /* =====================================
    TABLET FOOTER (577px - 992px)
-   Зменшений десктопний футер з розширеним трекінгом
 ===================================== */
 @media (min-width: 577px) and (max-width: 992px) {
   .site-footer {
@@ -97,8 +96,8 @@
   }
 
   .footer-nav a {
-    font-size: 12px;
-    letter-spacing: 1px;
+    font-size: 10px;
+    letter-spacing: 0.9px;
   }
 
   .social-links {
@@ -118,7 +117,6 @@
 
 /* =====================================
    MOBILE FOOTER (<= 576px)
-   3 рядочки по центру
 ===================================== */
 @media (max-width: 576px) {
   .site-footer {
@@ -132,34 +130,29 @@
   }
 
   .site-footer .logo {
-    justify-self: auto;
     font-size: 15px;
     letter-spacing: 6px;
   }
 
   .footer-nav {
-    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px 16px;
-    justify-self: auto;
+    gap: 12px 16px; /* Повернуто ширші відступи */
   }
 
   .footer-nav a {
-    font-size: 13px;
-    letter-spacing: 1.1px;
+    font-size: 10px; /* Ще трохи зменшено */
+    letter-spacing: 1.1px; /* Повернуто початковий трекінг */
   }
 
   .social-links {
-    justify-self: auto;
     justify-content: center;
     margin-top: 2px;
   }
 }
 
 /* =====================================
-   SMALLEST MOBILE FOOTER (<= 400px, ~320px-330px)
-   Зменшений текст та легкий розширений трекінг
+   SMALLEST MOBILE FOOTER (<= 400px)
 ===================================== */
 @media (max-width: 400px) {
   .site-footer {
@@ -174,21 +167,11 @@
   }
 
   .footer-nav {
-    gap: 8px 12px;
+    gap: 10px 14px; /* Ширші відступи для маленьких екранів */
   }
 
   .footer-nav a {
-    font-size: 11px;
-    letter-spacing: 0.9px;
-  }
-
-  .social-links a {
-    width: 26px;
-    height: 26px;
-  }
-
-  .social-icon {
-    width: 12px;
-    height: 12px;
+    font-size: 9.5px; /* Зменшено для компактності */
+    letter-spacing: 0.9px; /* Повернуто ширший трекінг */
   }
 }
