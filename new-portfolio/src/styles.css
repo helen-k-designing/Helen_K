@@ -53,13 +53,70 @@ a {
   letter-spacing: inherit;
 }
 
+/* ПОВНЕ СКАСУВАННЯ СТАНДАРТНИХ РАМОК, СИНІХ ОБВОДІВ ТА ФОКУСІВ */
 a:focus, 
 button:focus, 
 input:focus, 
 select:focus, 
-textarea:focus {
+textarea:focus,
+a:active,
+button:active,
+input:active,
+select:active,
+textarea:active {
   outline: none !important;
   box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ГЛОБАЛЬНЕ СКАСУВАННЯ БІЛОГО ФОНУ АВТОЗАПОВНЕННЯ БРАУЗЕРА (AUTOFILL) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+  -webkit-text-fill-color: #fdf8ff !important;
+  -webkit-box-shadow: 0 0 0 1000px #411f61 inset !important;
+  box-shadow: 0 0 0 1000px #411f61 inset !important;
+  border-color: rgba(226, 197, 245, 0.35) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* =====================================
+   КАСТОМНИЙ СКРОЛБАР У СТИЛІ VIOLET STUDIO
+==================================== */
+
+/* Для Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(226, 197, 245, 0.25) transparent;
+}
+
+/* Для Chrome, Edge, Safari (WebKit) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(226, 197, 245, 0.25);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 181, 245, 0.5);
 }
 
 button {

@@ -2,7 +2,6 @@
    VIOLET STUDIO — CHAT MODAL STYLES
 ===================================== */
 
-/* Блокуємо скрол фонової сторінки під час відкриття модалки */
 :host ::ng-deep body {
   overflow: hidden;
 }
@@ -36,7 +35,6 @@
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Шапка */
 .chat-header {
   display: flex;
   align-items: center;
@@ -85,13 +83,13 @@
   align-items: center;
   justify-content: center;
   transition: background 0.25s ease;
+  cursor: pointer;
 }
 
 .chat-close-btn:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Стрічка повідомлень */
 .chat-messages {
   padding: 18px 20px;
   display: flex;
@@ -99,18 +97,18 @@
   gap: 12px;
   max-height: 240px;
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
-/* Бульбашка повідомлення: робимо текст компактнішим, щоб він гарантовано вміщався */
 .message-bubble {
   max-width: 85%;
   padding: 10px 14px;
   border-radius: 16px;
-  font-size: 12px;       /* Трохи менший розмір, щоб текст гарно влізав */
-  line-height: 1.45;     /* Компактніший міжрядковий інтервал */
+  font-size: 12px;
+  line-height: 1.45;
   letter-spacing: 0.5px;
   position: relative;
-  word-break: break-word; /* Запобігає вильоту довгих слів чи посилань */
+  word-break: break-word;
 }
 
 .message-bubble.studio {
@@ -121,12 +119,15 @@
   border-bottom-left-radius: 4px;
 }
 
+/* М'яка бульбашка користувача з ніжним фіолетовим градієнтом */
 .message-bubble.user {
   align-self: flex-end;
-  background: linear-gradient(110deg, #ffffff 0%, #dfc0ff 100%);
-  color: #28123e;
-  font-weight: 500;
+  background: linear-gradient(135deg, rgba(85, 39, 126, 0.55) 0%, rgba(138, 92, 184, 0.4) 100%);
+  border: 1px solid rgba(226, 197, 245, 0.35);
+  color: #fdf8ff;
+  font-weight: 400;
   border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 15px rgba(45, 15, 75, 0.3);
 }
 
 .msg-time {
@@ -138,7 +139,6 @@
   letter-spacing: 0.4px;
 }
 
-/* Форма */
 .chat-form {
   padding: 14px 20px 18px;
   background: rgba(255, 255, 255, 0.04);
@@ -154,7 +154,6 @@
   gap: 8px;
 }
 
-/* Інпути */
 .chat-input {
   width: 100%;
   background: rgba(255, 255, 255, 0.07);
@@ -164,7 +163,8 @@
   color: #ffffff;
   font-size: 13px;
   letter-spacing: 0.8px;
-  transition: border-color 0.25s ease, background 0.25s ease;
+  transition: all 0.25s ease;
+  outline: none;
 }
 
 .chat-input::placeholder {
@@ -176,12 +176,34 @@
   background: rgba(255, 255, 255, 0.11);
 }
 
-/* Багаторядкове поле для запитання (~ 3 рядочки) */
+/* Стиль для полів вводу, коли в них вставились або вписались дані (автозаповнення) */
+.chat-input.has-value {
+  background: linear-gradient(135deg, rgba(74, 33, 110, 0.4) 0%, rgba(115, 68, 160, 0.25) 100%);
+  border-color: rgba(217, 181, 245, 0.4);
+}
+
+.chat-input.input-error {
+  border-color: #f9a8d4;
+  background: rgba(244, 114, 182, 0.12);
+  box-shadow: 0 0 0 2px rgba(249, 168, 212, 0.18);
+}
+
+.validation-hint {
+  margin: 0;
+  padding: 2px 4px;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: #fbcfe8;
+  line-height: 1.35;
+  animation: fadeIn 0.2s ease forwards;
+}
+
 .chat-textarea {
-  width: 100%;
   min-height: 78px;
   resize: none;
   line-height: 1.5;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .message-input-row {
@@ -206,6 +228,8 @@
   justify-content: center;
   flex-shrink: 0;
   transition: transform 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+  border: none;
 }
 
 .send-btn:hover:not(:disabled) {
@@ -217,7 +241,6 @@
   cursor: not-allowed;
 }
 
-/* Іконки месенджерів у футері */
 .chat-footer-messengers {
   display: flex;
   align-items: center;
@@ -272,10 +295,6 @@
     transform: translateY(0) scale(1);
   }
 }
-
-/* =====================================
-   АДАПТИВНІСТЬ ДЛЯ ПЛАНШЕТІВ ТА МОБІЛЬНИХ
-===================================== */
 
 @media (max-width: 700px) {
   .chat-window {

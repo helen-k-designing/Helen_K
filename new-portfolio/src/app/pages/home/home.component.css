@@ -74,6 +74,7 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
+  height: 100%;
   gap: 10px;
   padding: 16px 20px;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -238,6 +239,7 @@
   }
 
   .service-card {
+    height: 100%;
     padding: 12px 14px;
     border-radius: 11px;
   }
@@ -344,6 +346,7 @@
   }
 
   .service-card {
+    min-height: 72px;
     padding: 12px 16px;
     border-radius: 12px;
   }
