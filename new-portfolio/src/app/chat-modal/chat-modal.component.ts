@@ -18,84 +18,61 @@ export interface ChatMessage {
 export class ChatModalComponent {
   @Output() close = new EventEmitter<void>();
 
-  // Твої контакти для швидких кнопок (підстав свої реальні дані)
-  readonly whatsappUrl = 'https://wa.me/380000000000?text=Привіт!%20Хочу%20задати%20запитання%20щодо%20проєкту';
-  readonly signalUrl = 'https://signal.me/#p/+380000000000'; // Офіційне посилання Signal
+  // Сигнали форми (повністю збігаються з твоїм HTML)
+  userName = signal<string>('');
+  userContact = signal<string>(''); // Сюди вводиться імейл користувача
+  currentMessage = signal<string>('');
+  isSending = signal<boolean>(false);
 
-  // Поля форми
-  userName = signal('');
-  contactMethod = signal<'Email' | 'WhatsApp' | 'Signal'>('Email');
-  userContact = signal('');
-  currentMessage = signal('');
-  isSending = signal(false);
-  isSent = signal(false);
+  // Посилання на месенджери у футері
+  whatsappUrl = 'https://wa.me/380000000000'; // Заміни на свій актуальний номер
+  signalUrl = 'https://signal.me/#p/+380000000000'; // Заміни на своє посилання Signal
 
-  // Історія повідомлень у вікні чату
+  // Стрічка повідомлень
   messages = signal<ChatMessage[]>([
     {
       sender: 'studio',
-      text: 'Привіт! 👋 Я на зв’язку. Залиш свої контакти та напиши запитання нижче — або переходь одразу в зручний месенджер.',
+      text: 'Привіт! Я на зв’язку. Залиш свій імейл та напиши запитання нижче — або переходь одразу в зручний месенджер.',
       time: this.getCurrentTime()
     }
   ]);
 
-  get contactPlaceholder(): string {
-    switch (this.contactMethod()) {
-      case 'Email':
-        return 'Твій email (напр. name@gmail.com)';
-      case 'WhatsApp':
-        return 'Номер у WhatsApp (+380...)';
-      case 'Signal':
-        return 'Номер або нікнейм у Signal';
-    }
+  // Закриття модального вікна
+  onClose(): void {
+    this.close.emit();
   }
 
-  selectMethod(method: 'Email' | 'WhatsApp' | 'Signal') {
-    this.contactMethod.set(method);
-  }
-
-  sendMessage() {
-    const text = this.currentMessage().trim();
+  // Відправлення повідомлення
+  sendMessage(): void {
     const contact = this.userContact().trim();
+    const text = this.currentMessage().trim();
+    const name = this.userName().trim();
 
-    if (!text || !contact) return;
+    if (!contact || !text || this.isSending()) {
+      return;
+    }
 
-    // Додаємо повідомлення користувача у вікно чату
-    this.messages.update(list => [
-      ...list,
+    this.isSending.set(true);
+
+    // Додаємо повідомлення користувача у чат
+    this.messages.update((prev) => [
+      ...prev,
       {
         sender: 'user',
-        text: text,
+        text: name ? `${name} (${contact}): ${text}` : `${contact}: ${text}`,
         time: this.getCurrentTime()
       }
     ]);
 
-    this.isSending.set(true);
+    // Очищаємо поле повідомлення та знімаємо стан відправки
     this.currentMessage.set('');
-
-    // Імітація відправки (сюди згодом підключимо EmailJS)
+    
     setTimeout(() => {
       this.isSending.set(false);
-      this.isSent.set(true);
-
-      const nameGreeting = this.userName().trim() ? `, ${this.userName().trim()}` : '';
-      this.messages.update(list => [
-        ...list,
-        {
-          sender: 'studio',
-          text: `Дякую${nameGreeting}! Запитання отримано. Я відповім тобі у ${this.contactMethod()} (${contact}) найближчим часом ✨`,
-          time: this.getCurrentTime()
-        }
-      ]);
-    }, 600);
-  }
-
-  onClose() {
-    this.close.emit();
+    }, 400);
   }
 
   private getCurrentTime(): string {
-    const now = new Date();
-    return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }
 }

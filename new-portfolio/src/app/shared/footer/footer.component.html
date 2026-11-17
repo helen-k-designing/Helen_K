@@ -2,12 +2,12 @@
   <span class="logo">Portfolio</span>
   
   
-  <nav class="footer-nav">
-      <a routerLink="/">Головна</a>
-      <a routerLink="/gallery">Галерея</a>
-      <a routerLink="/about">Про мене</a>
-      <a routerLink="/contact">Контакти</a>
-    </nav>
+ <nav class="footer-nav">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Головна</a>
+    <a routerLink="/about" routerLinkActive="active">Про мене</a>
+    <a routerLink="/gallery" routerLinkActive="active">Галерея</a>
+    <a routerLink="/contact" routerLinkActive="active">Контакти</a>
+  </nav>
 
   <div class="social-links">
     <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
