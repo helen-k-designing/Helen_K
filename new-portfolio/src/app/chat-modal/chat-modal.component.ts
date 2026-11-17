@@ -39,6 +39,17 @@ export class ChatModalComponent implements OnInit {
 
   ngOnInit(): void {
     emailjs.init("YOUR_PUBLIC_KEY");
+
+    // Відновлюємо збережені дані з пам'яті браузера при відкритті чату
+    const savedName = localStorage.getItem('violet_studio_user_name');
+    const savedContact = localStorage.getItem('violet_studio_user_contact');
+
+    if (savedName) {
+      this.userName.set(savedName);
+    }
+    if (savedContact) {
+      this.userContact.set(savedContact);
+    }
   }
 
   onClose(): void {
@@ -67,6 +78,10 @@ export class ChatModalComponent implements OnInit {
 
     this.showValidationError.set(false);
     this.isSending.set(true);
+
+    // Зберігаємо введені дані в localStorage для наступних візитів
+    localStorage.setItem('violet_studio_user_name', name);
+    localStorage.setItem('violet_studio_user_contact', contact);
 
     const displayHtml = `<strong>Ім'я:</strong> ${name}<br><strong>Email:</strong> ${contact}<br><br>${text}`;
 

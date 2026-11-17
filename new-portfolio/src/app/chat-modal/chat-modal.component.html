@@ -32,7 +32,7 @@
           [ngModel]="userName()" 
           (ngModelChange)="userName.set($event); onFieldInput()" 
           name="userName"
-          autocomplete="name"
+          autocomplete="off"
           required
           [class.input-error]="showValidationError() && !userName().trim()"
           [class.has-value]="userName().trim().length > 0"
@@ -45,7 +45,7 @@
           [ngModel]="userContact()" 
           (ngModelChange)="userContact.set($event); onFieldInput()" 
           name="userContact"
-          autocomplete="email"
+          autocomplete="off"
           required
           [class.input-error]="showValidationError() && !userContact().trim()"
           [class.has-value]="userContact().trim().length > 0"
