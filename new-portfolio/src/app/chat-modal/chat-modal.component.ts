@@ -5,6 +5,9 @@ import emailjs from '@emailjs/browser';
 
 export interface ChatMessage {
   sender: 'studio' | 'user';
+  // Зберігаємо окремо пошту, ім'я та текст, або текст звичайним рядком
+  name?: string;
+  contact?: string;
   text: string;
   time: string;
 }
@@ -89,7 +92,9 @@ export class ChatModalComponent implements OnInit {
       ...prev,
       {
         sender: 'user',
-        text: displayHtml,
+        name: name,
+        contact: contact,
+        text: text,
         time: this.getCurrentTime()
       }
     ]);

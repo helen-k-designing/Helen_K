@@ -412,11 +412,12 @@
   }
 
   .hero-logo-img-wrapper {
-    max-width: 82px;
+    max-width: 92px;
   }
 
   .hero-logo-img {
     margin-top: 0;
+    margin-bottom: 15px;
   }
 
   .hero-right-content h1 {

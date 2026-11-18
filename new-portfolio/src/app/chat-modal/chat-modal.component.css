@@ -19,13 +19,12 @@
   align-items: center;
   justify-content: center;
   padding: 16px;
-  overflow: hidden; /* Забороняємо будь-який рух бакдропу */
+  overflow: hidden;
 }
 
 .chat-window {
   width: 100%;
   max-width: 390px;
-  /* Фіксована компактна висота, жодних стрибків під час появи клавіатури */
   max-height: 85vh;
   background: linear-gradient(145deg, #25103a 0%, #3d1b5c 100%);
   border: 1px solid rgba(226, 197, 245, 0.28);
@@ -147,25 +146,45 @@
   gap: 6px;
 }
 
-.chat-input {
+/* ЗАХИСТ ВІД БІЛОГО ФОНУ ТА АВТОЗАПОВНЕННЯ */
+.chat-input,
+.chat-textarea {
   width: 100%;
-  background: rgba(65, 31, 97, 0.6); /* Жорсткий фіолетовий фон замість білого автофілу */
+  background-color: #411f61 !important;
+  background: #411f61 !important;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 10px;
   padding: 8px 12px;
-  color: #ffffff;
+  color: #ffffff !important;
   font-size: 12px;
   letter-spacing: 0.6px;
   outline: none;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
-.chat-input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+.chat-input:-webkit-autofill,
+.chat-input:-webkit-autofill:hover,
+.chat-input:-webkit-autofill:focus,
+.chat-input:-webkit-autofill:active,
+.chat-textarea:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0 1000px #411f61 inset !important;
+  box-shadow: 0 0 0 1000px #411f61 inset !important;
+  background-color: #411f61 !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
-.chat-input:focus {
+.chat-input::placeholder,
+.chat-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.chat-input:focus,
+.chat-textarea:focus {
   border-color: #d9b5f5;
-  background: rgba(74, 33, 110, 0.8);
+  background-color: #4a216e !important;
+  background: #4a216e !important;
 }
 
 .chat-input.has-value {
@@ -173,7 +192,8 @@
   border-color: rgba(217, 181, 245, 0.4);
 }
 
-.chat-input.input-error {
+.chat-input.input-error,
+.chat-textarea.input-error {
   border-color: #f9a8d4;
   background: rgba(244, 114, 182, 0.15);
 }
@@ -251,11 +271,10 @@
 
 /* ЗАХИСТ ВІД БУДЬ-ЯКИХ ЗСУВУВ НА МОБІЛЬНИХ */
 @media (max-width: 480px) {
-  /* Залишаємо наш красивий акуратний розмір, але вимикаємо браузерний зум */
   .chat-input, 
   .chat-textarea {
     font-size: 13px !important;
-    touch-action: manipulation; /* Запобігає подвійному тапу та стрибкам масштабування */
+    touch-action: manipulation;
   }
 
   .chat-backdrop {
@@ -270,7 +289,6 @@
     width: 100% !important;
     max-width: 360px !important;
     max-height: 80vh !important;
-    /* Робимо вікно стабільним по центру, без стрибків і розтягувань */
     border-radius: 20px !important;
   }
 }

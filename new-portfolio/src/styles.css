@@ -89,22 +89,6 @@ select:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* ПРИМУСОВЕ ПЕРЕФАРБОВУВАННЯ АВТОЗАПОВНЕННЯ НА МОБІЛЬНИХ І ДЕСКТОПАХ */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-textarea:-webkit-autofill:active {
-  -webkit-text-fill-color: #fdf8ff !important;
-  -webkit-box-shadow: 0 0 0 1000px #411f61 inset !important;
-  box-shadow: 0 0 0 1000px #411f61 inset !important;
-  border-color: rgba(226, 197, 245, 0.35) !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
 /* =====================================
    КАСТОМНИЙ СКРОЛБАР У СТИЛІ VIOLET STUDIO
 ==================================== */
@@ -153,11 +137,11 @@ img {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* <--- Змінили з space-between, щоб елементи не розтягувались */
-  gap: 20px;                   /* <--- Додає акуратну відстань між секціями замість розриву */
+  justify-content: space-between; /* <--- Повертаємо space-between, щоб контент був зверху, а футер внизу */
+  gap: 20px;
   width: 100%;
   max-width: 1400px;
-  min-height: 100dvh;          /* <--- Замінили calc(...) на чистий висотний мінімум */
+  min-height: calc(100dvh - clamp(20px, 5vw, 52px)); /* <--- Вираховуємо висоту з урахуванням відступів body */
   margin: 0 auto;
   padding: clamp(16px, 3vw, 40px) clamp(14px, 3.5vw, 48px);
   border-radius: clamp(16px, 2.5vw, 28px);
@@ -167,6 +151,10 @@ img {
     radial-gradient(ellipse at 75% 25%, rgba(130, 65, 177, 0.6), transparent 50%),
     linear-gradient(135deg, #241037 0%, #462064 55%, #512477 100%);
   box-shadow: 0 20px 60px rgba(49, 18, 75, 0.35);
+}
+
+.content-wrapper {
+  flex-grow: 1; /* Змушує цей блок зайняти весь вільний простір по вертикалі */
 }
 
 /* BUTTONS & LINKS */
@@ -180,7 +168,7 @@ img {
   border-radius: 50px;
   font-size: 14px;
   font-weight: 500;
-  letter-spacing: 1.2px; /* Ширший текст на кнопках */
+  letter-spacing: 1.2px;
   text-decoration: none;
   transition: all 0.3s ease;
   white-space: nowrap;
@@ -216,7 +204,6 @@ img {
   color: #28123e;
 }
 
-
 /* =====================================
    TABLET ADJUSTMENTS (577px - 992px)
 ===================================== */
@@ -226,7 +213,7 @@ img {
     letter-spacing: 0.5px;
   }
 
-.page {
+  .page {
     min-height: 100dvh;
     padding: 22px 24px;
     border-radius: 20px;
@@ -236,7 +223,7 @@ img {
     padding: 7px 14px;
     font-size: 12px;
     letter-spacing: 0.9px;
-}
+  }
 }
 
 /* =====================================
@@ -251,14 +238,14 @@ img {
   .page {
     padding: 16px 12px;
     border-radius: 16px;
-    min-height: calc(100dvh - 32px); /* Займає мінімум весь екран (мінус невеликі відступи) */
-    height: auto;                     /* Дозволяє автоматично збільшуватись, якщо контенту багато */
+    min-height: calc(100dvh - 32px);
+    height: auto;
   }
 
   .btn {
     padding: 5px 12px;
     font-size: 11px;
     letter-spacing: 0.6px;
-    border-radius: 35px; /* Пропорційне скруглення для зменшеної кнопки */
+    border-radius: 35px;
   }
 }
