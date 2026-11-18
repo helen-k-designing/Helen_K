@@ -1,5 +1,5 @@
 /* =====================================
-   VIOLET STUDIO — ABOUT PAGE STYLES
+   VIOLET STUDIO — ABOUT PAGE STYLES (MATCHING BLOG & HOME ARCHITECTURE)
 ===================================== */
 
 :host {
@@ -9,10 +9,12 @@
 
 .about-page {
   width: 100%;
-  padding: 20px 0 30px;
+  padding: 3rem 1.5rem; /* Синхронізовано з відступами блогу */
 }
 
 .about-container {
+  max-width: 1300px;
+  margin: 0 auto;
   display: flex;
   align-items: flex-start;
   gap: clamp(24px, 4vw, 44px);
@@ -68,7 +70,7 @@
   box-shadow: 0 0 6px rgba(217, 181, 245, 0.8);
 }
 
-/* Права колонка: Текст вирівняний по правому краю */
+/* Права колонка */
 .about-right-content {
   flex: 1;
   display: flex;
@@ -80,77 +82,84 @@
 
 .eyebrow {
   color: #e9d3fa;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 3.5px;
   text-transform: uppercase;
   margin-bottom: 6px;
+  font-weight: 300;
 }
 
-/* Заголовок синхронізований із розмірами на Home (максимум 38px) */
+/* Головний заголовок сторінки (в стилі заголовок блогу) */
 .about-right-content h1 {
-  margin: 0 0 18px;
-  font-size: clamp(26px, 3.2vw, 38px);
+  margin: 0 0 1.2rem;
+  font-size: clamp(2rem, 4vw, 2.3rem);
   line-height: 1.15;
-  letter-spacing: -0.3px;
-  font-weight: 400;
+  letter-spacing: 2.2px;
+  font-weight: 600;
   color: #ffffff;
 }
 
-/* Основний текст синхронізований із Home (максимум 14px) */
+/* =====================================
+   БІОГРАФІЯ ТА ТИПОГРАФІКА (ПРЯМІ clamp — ЯК У БЛОЗІ)
+===================================== */
+
 .about-bio-text {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 16px;
-  color: #d8c2eb;
-  font-size: clamp(13px, 1vw, 14px);
+  gap: 1.2rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: clamp(13.5px, 1.1vw, 15px);
   line-height: 1.7;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.9px;
   margin-bottom: 0;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .about-bio-text p {
   margin: 0;
 }
 
-/* Виділення ключових слів */
+/* Вступний абзац (Lead) */
+.lead-text {
+  font-size: clamp(15px, 1.35vw, 18px); 
+  line-height: 1.6;
+  color: #fcf8ff;
+  letter-spacing: 1px;
+}
+
+/* Ключові слова (CLO 3D тощо) — власний адаптивний clamp */
 .about-bio-text strong {
   color: #ffffff;
-  font-size: 1.15em;
+  font-size: clamp(14px, 1.15vw, 16px);
   font-weight: 600;
   letter-spacing: 1px;
-  text-shadow: 0 0 18px rgba(217, 181, 245, 0.35);
+  text-shadow: 0 0 10px rgba(217, 181, 245, 0.25);
 }
 
 .lead-text strong {
-  font-size: 1.04em;
+  font-size: clamp(15.5px, 1.4vw, 19px);
   font-weight: 700;
   color: #ffffff;
-  text-shadow: 0 0 20px rgba(217, 181, 245, 0.55);
+  text-shadow: 0 0 12px rgba(217, 181, 245, 0.35);
 }
 
+/* Підзаголовок h3 (Технологічний стек та навички) */
 .about-bio-text h3 {
-  margin: 12px 0 2px;
-  font-size: clamp(18px, 1.6vw, 21px);
+  margin: 1.5rem 0 0.5rem;
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem); 
   font-weight: 500;
   color: #ffffff;
-  letter-spacing: 1.2px;
-}
-
-/* Вступний абзац (Lead) */
-.lead-text {
-  font-size: clamp(15px, 1.4vw, 18px);
-  line-height: 1.55;
-  color: #fcf8ff;
-  letter-spacing: 0.9px;
+  letter-spacing: 1.5px;
 }
 
 
 /* =====================================
-   ETAPE 2: TABLET ADAPTIVE (601px - 1100px)
-   Збалансовані та комфортні розміри для всього тексту
+   АДАПТИВНІ ДІАПАЗОНИ (ПЛАНШЕТНИЙ НАХЛЬОСТ 599px — 1100px)
 ===================================== */
-@media (min-width: 601px) and (max-width: 1100px) {
+
+@media (min-width: 599px) and (max-width: 1100px) {
   .about-container {
     display: block;
   }
@@ -172,14 +181,17 @@
     display: block;
     text-align: right;
   }
-
 }
 
+
 /* =====================================
-   ETAPE 3: MOBILE ADAPTIVE (<= 600px)
-   Теж із плаваючими розмірами (clamp) для повного зв'язку
+   МОБІЛЬНИЙ АДАПТИВ (<= 598px)
 ===================================== */
-@media (max-width: 600px) {
+@media (max-width: 598px) {
+  .about-page {
+    padding: 1.5rem 1rem;
+  }
+
   .about-container {
     flex-direction: column;
     align-items: center;
@@ -197,6 +209,6 @@
     width: 100%;
     align-items: flex-end;
     text-align: right;
-    margin-top: 15px;
+    margin-top: 1.2rem;
   }
 }

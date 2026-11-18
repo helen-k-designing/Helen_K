@@ -1,6 +1,6 @@
 /* =====================================
-   HEADER COMPONENT STYLES (Десктоп / Планшет)
-   Один рядок: Логотип зліва -> Меню по центру/праворуч -> Блог крайній праворуч
+   HEADER COMPONENT STYLES (Десктоп)
+   Працює для великих екранів (від 676px і вище)
 ===================================== */
 
 :host {
@@ -41,7 +41,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-left: auto; /* Притискає меню та кнопку до правого боку */
+  margin-left: auto;
 }
 
 .header-nav-row a {
@@ -69,10 +69,10 @@
 
 
 /* =====================================
-   ПРОМІЖНИЙ РОЗМІР ДЛЯ ПЛАНШЕТІВ (576px — 992px)
+   ПРОМІЖНИЙ РОЗМІР ДЛЯ ПЛАНШЕТІВ (676px — 992px)
 ===================================== */
 
-@media (min-width: 576px) and (max-width: 992px) {
+@media (min-width: 676px) and (max-width: 992px) {
   .header {
     padding: 12px 20px;
   }
@@ -91,24 +91,24 @@
 
 
 /* =====================================
-   МОБІЛЬНИЙ РЕЖИМ (<= 575px, з оптимізацією від 320px)
+   МОБІЛЬНИЙ ТА МІНІ-ПЛАНШЕТНИЙ РЕЖИМ (<= 675px)
    Дворядковий макет: 
    Рядок 1: Логотип зліва + Кнопка "Блог" праворуч
    Рядок 2: Меню з прокруткою
 ===================================== */
 
-@media (max-width: 575px) {
+@media (max-width: 675px) {
   .header {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    padding: 8px 10px; /* Трохи компактніші відступи для 320px */
-    border-radius: 12px;
+    padding: 10px 14px; 
+    border-radius: 16px;
   }
 
   /* 1. Логотип у першому рядку */
   .logo {
-    font-size: 13px; /* Компактний розмір для вузьких екранів */
+    font-size: 14px;
     letter-spacing: 2.5px;
     flex: 0 0 auto;
   }
@@ -117,8 +117,8 @@
   .header-blog-btn {
     order: 1;
     margin-left: auto;
-    padding: 4px 10px; /* Компактніша кнопка, щоб ідеально влізла на 320px */
-    font-size: 10.5px;
+    padding: 5px 12px;
+    font-size: 11.5px;
     letter-spacing: 0.6px;
   }
 
@@ -130,12 +130,11 @@
     justify-content: space-between;
     width: 100%;
     margin-left: 0;
-    gap: 3px;
+    gap: 4px;
     overflow-x: auto;
-    padding-top: 3px;
+    padding-top: 6px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     
-    /* Приховуємо смугу прокрутки для естетики на мобільних */
     scrollbar-width: none; /* Firefox */
   }
 
@@ -144,9 +143,9 @@
   }
 
   .header-nav-row a {
-    font-size: 11px; /* Мініатюрніші шрифти, щоб усі пункти легко вміщувалися */
-    letter-spacing: 0.3px;
-    padding: 3px 5px;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    padding: 4px 8px;
     white-space: nowrap;
   }
 }
