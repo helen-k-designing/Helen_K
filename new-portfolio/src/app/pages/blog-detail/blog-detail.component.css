@@ -1,0 +1,183 @@
+.blog-detail-page,
+.blog-detail-page * {
+  box-sizing: border-box;
+}
+
+.blog-detail-page {
+  width: 100%;
+  max-width: 860px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+  color: #ffffff;
+  overflow-x: clip;
+}
+
+.article-header {
+  margin-bottom: 24px;
+  text-align: right;
+  min-width: 0;
+}
+
+.article-category {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(185, 139, 224, 0.2);
+  border: 1px solid rgba(226, 197, 245, 0.35);
+  color: #eadcf5;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  margin-bottom: 10px;
+}
+
+.article-title {
+  margin: 0 0 10px;
+  font-size: clamp(22px, 3.6vw, 36px);
+  line-height: 1.25;
+  font-weight: 600;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  font-size: 13px;
+  color: #d6c2ea;
+}
+
+/* Обтікання збільшеної картинки текстом праворуч */
+.article-body {
+  text-align: right;
+  min-width: 0;
+}
+
+.article-body::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.article-float-media {
+  float: left;
+  width: 48%;
+  max-width: 380px;
+  min-width: 0;
+  margin: 4px 22px 16px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.article-float-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.article-paragraph {
+  margin: 0 0 18px;
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.75;
+  letter-spacing: 0.4px;
+  color: #f5eeff;
+  overflow-wrap: anywhere;
+}
+
+.article-code {
+  clear: both;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 24px 0;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: rgba(25, 10, 38, 0.72);
+  border: 1px solid rgba(185, 139, 224, 0.28);
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: auto;
+  color: #eadcf5;
+}
+
+/* Планшет (577px - 992px) */
+@media (max-width: 992px) {
+  .blog-detail-page {
+    padding: 16px 14px 36px;
+  }
+
+  .article-float-media {
+    width: 46%;
+    max-width: 300px;
+    margin: 4px 16px 14px 0;
+  }
+}
+
+/* Мобільний (<= 576px) */
+@media (max-width: 576px) {
+  .blog-detail-page {
+    padding: 12px 12px 28px;
+  }
+
+  .article-header {
+    margin-bottom: 18px;
+  }
+
+  .article-float-media {
+    width: 50%;
+    max-width: 210px;
+    margin: 2px 12px 10px 0;
+    border-radius: 10px;
+  }
+
+  .article-paragraph {
+    margin-bottom: 14px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    letter-spacing: 0.25px;
+  }
+
+  .article-code {
+    padding: 12px 14px;
+    font-size: 12.5px;
+  }
+}
+
+/* Мобільний ландшафт (невисокий екран з широкою горизонталлю) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .blog-detail-page {
+    padding-top: 10px;
+    padding-bottom: 24px;
+  }
+
+  .article-float-media {
+    width: 36%;
+    max-width: 220px;
+    margin: 2px 14px 10px 0;
+  }
+}
+
+/* Найменші екрани (<= 400px) */
+@media (max-width: 400px) {
+  .blog-detail-page {
+    padding: 10px 10px 24px;
+  }
+
+  .article-float-media {
+    width: 48%;
+    max-width: 165px;
+    margin: 2px 10px 8px 0;
+  }
+
+  .article-paragraph {
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+}

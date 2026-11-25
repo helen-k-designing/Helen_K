@@ -34,38 +34,44 @@
 
   <!-- SERVICES SECTION -->
   <section class="services" id="services">
-    <article class="service-card">
-      <div class="service-card-left">
-        <span class="service-icon">◎</span>
-        <div>
-          <h2>Дизайн</h2>
-          <p>UI / UX & Design Увага до сіток, кольору та композиції...</p>
-        </div>
+   <a [routerLink]="['/blog', 1]" class="home-card">
+  <article class="service-card">
+    <div class="service-card-left">
+      <span class="service-icon">◎</span>
+      <div>
+        <h2>Дизайн</h2>
+        <p>UI / UX & Design Увага до сіток, кольору та композиції...</p>
       </div>
-      <span class="service-arrow">→</span>
-    </article>
+    </div>
+    <span class="service-arrow">→</span>
+  </article>
+</a>
 
-    <article class="service-card featured">
-      <div class="service-card-left">
-        <span class="service-icon">◇</span>
-        <div>
+    <a [routerLink]="['/blog', 2]" class="home-card">
+  <article class="service-card">
+    <div class="service-card-left">
+      <span class="service-icon">◎</span>
+      <div>
           <h2>Frontend-розробка</h2>
           <p>Адаптивність, Angular, TypeScript, GitHub...</p>
-        </div>
-      </div>
-      <span class="service-arrow">→</span>
-    </article>
+            </div>
+    </div>
+    <span class="service-arrow">→</span>
+  </article>
+</a>
 
-    <article class="service-card">
-      <div class="service-card-left">
-        <span class="service-icon">✦</span>
-        <div>
+    <a [routerLink]="['/blog', 3]" class="home-card">
+  <article class="service-card">
+    <div class="service-card-left">
+      <span class="service-icon">◎</span>
+      <div>
           <h2>Архітектура коду</h2>
           <p>Чиста компонентна структура, типізація...</p>
-        </div>
-      </div>
-      <span class="service-arrow">→</span>
-    </article>
+         </div>
+    </div>
+    <span class="service-arrow">→</span>
+  </article>
+</a>
   </section>
 
   <!-- PROJECTS SECTION -->

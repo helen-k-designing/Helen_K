@@ -1,0 +1,58 @@
+<section class="comments-section" aria-label="Коментарі до статті">
+  <header class="comments-header">
+    <p class="comments-eyebrow">Обговорення</p>
+    <h2>Коментарі ({{ comments().length }})</h2>
+  </header>
+
+  <form class="comment-form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-field">
+      <label for="comment-author">Ім’я</label>
+      <input
+        id="comment-author"
+        name="authorName"
+        type="text"
+        [(ngModel)]="authorName"
+        placeholder="Як до вас звертатися?"
+        maxlength="60"
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="comment-body">Коментар</label>
+      <textarea
+        id="comment-body"
+        name="commentText"
+        rows="4"
+        [(ngModel)]="commentText"
+        placeholder="Поділіться думками, запитаннями чи власним досвідом..."
+        maxlength="1000"
+      ></textarea>
+    </div>
+
+    @if (errorMessage()) {
+      <p class="form-error" role="alert">{{ errorMessage() }}</p>
+    }
+
+    @if (submittedNotice()) {
+      <p class="form-success" role="status">Коментар додано.</p>
+    }
+
+    <div class="form-actions">
+      <button type="submit" class="comment-submit-btn">Опублікувати</button>
+    </div>
+  </form>
+
+  <div class="comments-list">
+    @for (comment of comments(); track comment.id) {
+      <article class="comment-item">
+        <div class="comment-meta">
+          <strong class="comment-author">{{ comment.author }}</strong>
+          <span class="comment-date">{{ comment.createdAt }}</span>
+        </div>
+        <p class="comment-text">{{ comment.text }}</p>
+      </article>
+    } @empty {
+      <p class="comments-empty">Поки що коментарів немає — напишіть перший відгук до цієї статті.</p>
+    }
+  </div>
+</section>

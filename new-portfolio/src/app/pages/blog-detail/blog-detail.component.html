@@ -1,0 +1,32 @@
+<article class="blog-detail-page" *ngIf="post as article">
+  <header class="article-header">
+    <span class="article-category">{{ article.categoryLabel }}</span>
+    <h1 class="article-title">{{ article.title }}</h1>
+    <div class="article-meta">
+      <span>{{ article.date }}</span>
+      <span>•</span>
+      <span>{{ article.readTime }}</span>
+    </div>
+  </header>
+
+  <div class="article-body">
+    <figure *ngIf="article.imageUrl" class="article-float-media">
+      <img
+        [src]="post.imageUrl"
+        [alt]="post.title"
+        class="article-float-img"
+        loading="eager" />
+    </figure>
+
+    <p *ngFor="let paragraph of article.content" class="article-paragraph">
+      {{ paragraph }}
+    </p>
+  </div>
+
+  <pre *ngIf="article.codeSnippet" class="article-code"><code>{{ article.codeSnippet }}</code></pre>
+</article>
+
+<div class="not-found" *ngIf="!post">
+  <p>Статтю не знайдено.</p>
+  <a [routerLink]="['/']">Повернутися на головну</a>
+</div>

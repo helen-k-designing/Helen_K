@@ -1,10 +1,11 @@
 import { Component, OnInit, AfterViewInit, inject, signal } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { ChatModalComponent } from '../../chat-modal/chat-modal.component';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ChatModalComponent],
+  imports: [CommonModule, ChatModalComponent, RouterLink],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

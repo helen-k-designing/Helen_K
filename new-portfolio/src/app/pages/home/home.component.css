@@ -69,6 +69,36 @@
   width: 100%;
 }
 
+/* Посилання-картка в сітці послуг */
+.services > a,
+.home-card {
+  display: block;
+  height: 100%;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 14px;
+}
+
+.services > a:focus,
+.services > a:focus-visible,
+.home-card:focus,
+.home-card:focus-visible {
+  outline: none;
+}
+
+.services > a:focus-visible .service-card,
+.home-card:focus-visible .service-card {
+  border-color: rgba(185, 139, 224, 0.9);
+  box-shadow: 0 0 0 2px rgba(185, 139, 224, 0.35);
+}
+
+.services > a:hover .service-card,
+.home-card:hover .service-card {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .service-card {
   display: flex;
   align-items: center;
@@ -82,7 +112,7 @@
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card-left {
@@ -238,6 +268,11 @@
     margin: 14px 0 18px;
   }
 
+  .services > a,
+  .home-card {
+    border-radius: 11px;
+  }
+
   .service-card {
     height: 100%;
     padding: 12px 14px;
@@ -343,6 +378,12 @@
     grid-template-columns: 1fr;
     gap: 8px;
     margin: 14px 0;
+  }
+
+  .services > a,
+  .home-card {
+    height: auto;
+    border-radius: 12px;
   }
 
   .service-card {

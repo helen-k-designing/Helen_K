@@ -38,6 +38,7 @@
     <form class="chat-form" (ngSubmit)="sendMessage()">
       <div class="contact-setup">
         <input 
+          id="chat-user-name"
           type="text" 
           placeholder="Твоє ім'я *" 
           [ngModel]="userName()" 
@@ -52,6 +53,7 @@
         />
 
         <input 
+          id="chat-user-contact"
           type="email" 
           placeholder="Твій email *" 
           [ngModel]="userContact()" 
@@ -75,12 +77,13 @@
       <!-- Поле для запитання -->
       <div class="message-input-row">
         <textarea 
+          id="chat-current-message"
           placeholder="Напиши своє запитання..." 
           [ngModel]="currentMessage()" 
           (ngModelChange)="currentMessage.set($event)" 
           name="currentMessage"
           autocomplete="off"
-          //spellcheck="false"
+          spellcheck="false"
           required
           rows="3"
           class="chat-input chat-textarea msg-field">

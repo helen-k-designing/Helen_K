@@ -39,7 +39,10 @@
         <article class="post-card" (click)="openPost(post)">
           @if (post.imageUrl) {
             <div class="card-image-wrap">
-              <img [src]="post.imageUrl" [alt]="post.title" loading="lazy" />
+              <img
+                [src]="post.imageUrl"
+                [alt]="post.title"
+                [loading]="$index === 0 ? 'eager' : 'lazy'" />
               <span class="category-badge">{{ post.categoryLabel }}</span>
             </div>
           }
@@ -75,7 +78,7 @@
     </div>
   </div>
 
-  <!-- Модальне вікно для читання статті -->
+  <!-- Модальне вікно для читання статті та коментарів -->
   @if (activePost(); as post) {
     <div class="modal-backdrop" (click)="closePost()">
       <div class="modal-content" (click)="$event.stopPropagation()">
@@ -89,7 +92,11 @@
         <h2 class="modal-title">{{ post.title }}</h2>
 
         @if (post.imageUrl) {
-          <img [src]="post.imageUrl" [alt]="post.title" class="modal-image" />
+          <img
+            [src]="post.imageUrl"
+            [alt]="post.title"
+            class="modal-image"
+            loading="eager" />
         }
 
         <div class="modal-text">
@@ -101,6 +108,9 @@
         @if (post.codeSnippet) {
           <pre class="code-block"><code>{{ post.codeSnippet }}</code></pre>
         }
+
+        <!-- Коментарі до відкритої статті -->
+        <app-post-comments [postId]="post.id" />
       </div>
     </div>
   }

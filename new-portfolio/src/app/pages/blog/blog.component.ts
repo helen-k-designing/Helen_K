@@ -1,21 +1,22 @@
-import { Component, computed, signal, OnInit, inject } from '@angular/core';
+import { Component, computed, signal, OnInit, inject, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ViewportScroller } from '@angular/common';
 import { BlogCategory, BlogPost } from './blog.model';
-import { INITIAL_POSTS } from './blog.data';
+import { BLOG_POSTS } from './blog.data';
+import { PostCommentsComponent } from './comments/post-comments/post-comments';
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PostCommentsComponent],
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent implements OnInit {
   private viewportScroller = inject(ViewportScroller);
 
-  posts = signal<BlogPost[]>(INITIAL_POSTS);
+  posts = signal<BlogPost[]>(BLOG_POSTS);
   selectedCategory = signal<BlogCategory>('all');
   searchQuery = signal<string>('');
   activePost = signal<BlogPost | null>(null);
