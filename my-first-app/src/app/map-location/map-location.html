@@ -1,0 +1,14 @@
+<div class="map-box">
+  <button type="button" class="map-btn" (click)="toggleMap()">
+    {{ showMap() ? 'Сховати мапу' : 'Показати місцезнаходження на мапі' }}
+  </button>
+
+  @if (showMap()) {
+    <div class="map-card">
+      <p class="map-title">Наш офіс</p>
+      <p class="map-text"><strong>Адреса:</strong> м. Київ, вул. Січових Стрільців, 37/41</p>
+      <p class="map-text"><strong>Графік роботи:</strong> Пн–Пт, 09:00–18:00</p>
+      <p class="map-coords">Координати: 50.4536° N, 30.4968° E</p>
+    </div>
+  }
+</div>

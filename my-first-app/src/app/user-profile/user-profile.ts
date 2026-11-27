@@ -11,7 +11,7 @@ type OrderStatus = 'pending' | 'shipping' | 'delivered' | 'cancelled';
   styleUrl: './user-profile.css'
 })
 export class UserProfileComponent {
- // --- Ваші попередні дані картки ---
+  // Дані картки користувача
   username = 'Олена';
   role = 'Frontend Developer';
   email = 'olena@example.com';
@@ -20,15 +20,19 @@ export class UserProfileComponent {
   avatarUrl = 'my-photo.jpg';
   isOnline = true;
   skillsCount = 5;
+
+  // Дані для шапки (Header)
+  headerUser = 'Олексій';
+  headerAvatarUrl = 'https://angular.io/assets/images/logos/angular/angular.svg';
   isLoggedIn = true;
 
-  // --- ЛОГІКА ДЛЯ ЗАВДАННЯ 1 (Деталі) ---
+  // Перемикач деталей
   showDetails = false;
   toggleDetails() {
     this.showDetails = !this.showDetails;
   }
 
-  // --- ЛОГІКА ДЛЯ ЗАВДАННЯ 2 (Статус замовлення) ---
+  // Відстеження замовлення
   orderStatus: OrderStatus = 'pending';
   changeStatus(status: OrderStatus) {
     this.orderStatus = status;

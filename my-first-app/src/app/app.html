@@ -1,2 +1,24 @@
-<app-user-profile></app-user-profile>
-<router-outlet></router-outlet>
+<header class="top-nav">
+  <nav class="nav-buttons" aria-label="Головна навігація">
+    <a routerLink="/about" routerLinkActive="active-link" class="nav-btn">Про компанію</a>
+    <a routerLink="/contacts" routerLinkActive="active-link" class="nav-btn">Контакти</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <main class="main-column">
+    <router-outlet />
+  </main>
+
+  <aside class="sidebar-column">
+    <app-user-profile />
+  </aside>
+</div>
+
+<section class="counter-task">
+  <h3>Батьківський компонент із сигналом (значення: {{ parentCount() }})</h3>
+  <app-custom-counter [(count)]="parentCount"></app-custom-counter>
+
+  <h3>Батьківський компонент зі звичайною змінною (значення: {{ plainCount }})</h3>
+  <app-custom-counter [(count)]="plainCount"></app-custom-counter>
+</section>

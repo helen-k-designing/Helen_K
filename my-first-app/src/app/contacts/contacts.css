@@ -1,0 +1,113 @@
+.contacts-page {
+  max-width: 100%;
+  margin: 0;
+  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  background-color: #ffffff;
+  color: #0f294a;
+  font-family: system-ui, -apple-system, sans-serif;
+  box-shadow: 0 8px 24px rgba(15, 41, 74, 0.06);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: #e0f0ff;
+  color: #163a66;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.title {
+  margin: 12px 0 8px;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: #0b1f3a;
+}
+
+.lead {
+  margin: 0 0 20px;
+  line-height: 1.55;
+  color: #1e4976;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #122f52;
+}
+
+.field label span {
+  color: #b8293d;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #b6d4f2;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #0f294a;
+  background-color: #f8fbff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+  background-color: #ffffff;
+}
+
+.error {
+  color: #b8293d;
+  font-size: 0.82rem;
+}
+
+.submit-btn {
+  align-self: flex-start;
+  padding: 11px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1d4ed8;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: #163a66;
+}
+
+.submit-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.success-msg {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background-color: #e9f7ef;
+  color: #1b6b3a;
+  font-weight: 600;
+}

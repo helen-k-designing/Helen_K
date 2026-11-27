@@ -1,0 +1,48 @@
+.map-box {
+  margin-top: 20px;
+}
+
+.map-btn {
+  padding: 10px 16px;
+  border: 1px solid #1d4ed8;
+  border-radius: 8px;
+  background-color: #163a66;
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.map-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.map-btn:active {
+  transform: scale(0.99);
+}
+
+.map-card {
+  margin-top: 12px;
+  padding: 16px;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  background-color: #f0f7ff;
+  color: #0f294a;
+}
+
+.map-title {
+  margin: 0 0 8px;
+  font-weight: 700;
+  color: #0f294a;
+}
+
+.map-text {
+  margin: 4px 0;
+  font-size: 0.92rem;
+}
+
+.map-coords {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  color: #3b6998;
+}

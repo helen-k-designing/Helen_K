@@ -1,20 +1,59 @@
-<div style="border: 1px solid #ccc; padding: 20px; border-radius: 8px; max-width: 450px; margin: 20px auto; font-family: sans-serif;">
-  
-  <!-- Ваша існуюча шапка та картка користувача -->
+<div style="border: 1px solid #ccc; padding: 20px; border-radius: 8px; max-width: 500px; margin: 20px auto; font-family: sans-serif;">
+
+  <!-- Шапка сайту (Header) -->
+  <header style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; margin-bottom: 20px; border-bottom: 1px solid #eee;">
+  <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
+    <img
+      [src]="headerAvatarUrl"
+      [alt]="headerUser"
+      style="width: 32px; height: 32px; object-fit: contain; display: block;"
+    />
+    <span style="font-size: 13px; color: #666; white-space: nowrap;">{{ role }}</span>
+  </div>
+  ...
+
+    <div style="display: flex; align-items: center; gap: 8px;">
+      @if (isLoggedIn) {
+        <span style="font-weight: bold; font-size: 14px;">Вітаємо, Олексію!</span>
+        <button type="button" (click)="isLoggedIn = false" style="padding: 5px 10px; cursor: pointer;">Вийти</button>
+      } @else {
+        <button type="button" (click)="isLoggedIn = true" style="padding: 5px 10px; cursor: pointer;">Увійти</button>
+        <button type="button" style="padding: 5px 10px; cursor: pointer;">Зареєструватися</button>
+      }
+    </div>
+  </header>
+
+  <!-- Картка користувача -->
   <img [src]="avatarUrl" alt="Avatar" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: 15px;">
   <h2>{{ username }}</h2>
   <p style="color: #666; font-weight: bold;">{{ role }}</p>
-  
+
   <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+
   <p><strong>Email:</strong> {{ email }}</p>
   <p><strong>Вік:</strong> {{ age }}</p>
   <p><strong>Про себе:</strong> {{ bio }}</p>
 
   <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
 
-  <!-- НОВЕ ЗАВДАННЯ 1: Кнопка "Показати деталі" -->
+  <p><strong>Базові навички:</strong> {{ skillsCount }}</p>
+  <p><strong>Загальний індекс навичок (skillsCount * 2):</strong> {{ skillsCount * 2 }}</p>
+
+  <button [disabled]="!isOnline" style="padding: 10px 15px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 4px;">
+    Надіслати повідомлення
+  </button>
+
+  @if (!isOnline) {
+    <p style="color: gray; font-size: 12px; margin-top: 5px;">Користувач зараз не в мережі</p>
+  } @else {
+    <p style="color: green; font-size: 12px; margin-top: 5px;">Користувач онлайн</p>
+  }
+
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+
+  <!-- Вправа: Показати / приховати деталі -->
   <div style="margin-bottom: 20px;">
-    <button (click)="toggleDetails()" style="padding: 8px 16px; cursor: pointer;">
+    <button type="button" (click)="toggleDetails()" style="padding: 8px 16px; cursor: pointer;">
       {{ showDetails ? 'Приховати деталі' : 'Показати деталі' }}
     </button>
 
@@ -27,21 +66,29 @@
 
   <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
 
-  <!-- НОВЕ ЗАВДАННЯ 2: Відстеження замовлення через @switch -->
+  <!-- Вправа: Відстеження замовлення через @switch -->
   <div>
     <h4>Статус замовлення:</h4>
     <div style="margin-bottom: 10px; display: flex; gap: 5px; flex-wrap: wrap;">
-      <button (click)="changeStatus('pending')">Очікує</button>
-      <button (click)="changeStatus('shipping')">В дорозі</button>
-      <button (click)="changeStatus('delivered')">Доставлено</button>
-      <button (click)="changeStatus('cancelled')">Скасовано</button>
+      <button type="button" (click)="changeStatus('pending')">Очікує</button>
+      <button type="button" (click)="changeStatus('shipping')">В дорозі</button>
+      <button type="button" (click)="changeStatus('delivered')">Доставлено</button>
+      <button type="button" (click)="changeStatus('cancelled')">Скасовано</button>
     </div>
 
     @switch (orderStatus) {
-      @case ('pending') { <p style="color: orange; font-weight: bold;">⏳ Очікує підтвердження</p> }
-      @case ('shipping') { <p style="color: blue; font-weight: bold;">🚚 Замовлення в дорозі</p> }
-      @case ('delivered') { <p style="color: green; font-weight: bold;">✅ Замовлення доставлено</p> }
-      @case ('cancelled') { <p style="color: red; font-weight: bold;">❌ Замовлення скасовано</p> }
+      @case ('pending') {
+        <p style="color: orange; font-weight: bold;">⏳ Очікує підтвердження</p>
+      }
+      @case ('shipping') {
+        <p style="color: blue; font-weight: bold;">🚚 Замовлення в дорозі</p>
+      }
+      @case ('delivered') {
+        <p style="color: green; font-weight: bold;">✅ Замовлення доставлено</p>
+      }
+      @case ('cancelled') {
+        <p style="color: red; font-weight: bold;">❌ Замовлення скасовано</p>
+      }
     }
   </div>
 

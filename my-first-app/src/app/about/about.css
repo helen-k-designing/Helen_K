@@ -1,0 +1,53 @@
+.about-page {
+  max-width: 100%;
+  margin: 0;
+  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  background-color: #ffffff;
+  color: #0f294a;
+  font-family: system-ui, -apple-system, sans-serif;
+  box-shadow: 0 8px 24px rgba(15, 41, 74, 0.06);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: #e0f0ff;
+  color: #163a66;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.title {
+  margin: 12px 0 8px;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: #0b1f3a;
+}
+
+.lead {
+  margin: 0 0 16px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #1e4976;
+}
+
+.body-text {
+  margin: 0 0 20px;
+  line-height: 1.6;
+  color: #1f3a59;
+}
+
+.subtitle {
+  margin: 0 0 10px;
+  font-size: 1.15rem;
+  color: #0f294a;
+}
+
+.highlights-list {
+  margin: 0 0 24px;
+  padding-left: 20px;
+  line-height: 1.7;
+  color: #1b3452;
+}

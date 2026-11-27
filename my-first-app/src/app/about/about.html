@@ -1,0 +1,26 @@
+<section class="about-page">
+  <span class="badge">Про компанію</span>
+  <h1 class="title">{{ companyName }}</h1>
+  <p class="lead">{{ tagline }}</p>
+
+  <p class="body-text">
+    @if (expanded()) {
+      {{ fullDescription }}
+    } @else {
+      {{ fullDescription | truncate:90:' [...]' }}
+    }
+  </p>
+
+  <button type="button" class="toggle-btn" (click)="expanded.set(!expanded())">
+    {{ expanded() ? 'Згорнути' : 'Читати далі' }}
+  </button>
+
+  <h2 class="subtitle">На чому фокусуємося</h2>
+  <ul class="highlights-list">
+    @for (item of highlights; track item) {
+      <li appHighlight="#e0f0ff">{{ item }}</li>
+    }
+  </ul>
+
+  <app-map-location />
+</section>

@@ -1,0 +1,73 @@
+<section class="contacts-page">
+  <span class="badge">Зв'язок</span>
+  <h1 class="title">Контакти</h1>
+  <p class="lead" appHighlight="#eff6ff">
+    Маєте запитання щодо проєкту або співпраці? Заповніть форму нижче — ми відповімо найближчим часом.
+  </p>
+
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form" novalidate>
+    <div class="field">
+      <label for="name">Ім'я <span>*</span></label>
+      <input id="name" type="text" formControlName="name" placeholder="Наприклад, Олена" />
+      @if (contactForm.controls.name.touched && contactForm.controls.name.invalid) {
+        <small class="error">Вкажіть ваше ім'я.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="email">Email <span>*</span></label>
+      <input id="email" type="email" formControlName="email" placeholder="name@example.com" />
+      @if (contactForm.controls.email.touched && contactForm.controls.email.invalid) {
+        <small class="error">Введіть коректну адресу електронної пошти.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="phone">Телефон (лише цифри)</label>
+      <input
+        id="phone"
+        type="text"
+        formControlName="phone"
+        appDigitsOnly
+        placeholder="380501234567"
+      />
+    </div>
+
+    <div class="field">
+      <label for="subject">Тема <span>*</span></label>
+      <input id="subject" type="text" formControlName="subject" placeholder="Коротко про запит" />
+      @if (contactForm.controls.subject.touched && contactForm.controls.subject.invalid) {
+        <small class="error">Вкажіть тему повідомлення.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="message">Повідомлення <span>*</span></label>
+      <textarea
+        id="message"
+        rows="4"
+        formControlName="message"
+        placeholder="Опишіть ваше завдання або запитання..."
+      ></textarea>
+      @if (contactForm.controls.message.touched && contactForm.controls.message.invalid) {
+        <small class="error">Напишіть текст повідомлення.</small>
+      }
+    </div>
+
+    <button type="submit" class="submit-btn" [disabled]="contactForm.invalid">
+      Надіслати повідомлення
+    </button>
+  </form>
+
+  @if (isSent()) {
+    <p class="success-msg">Дякуємо! Ваше повідомлення успішно надіслано.</p>
+  }
+
+  <app-map-location />
+
+  <div class="contact-meta">
+  <p>Телефон підтримки: <strong>{{ supportPhone | maskSecret }}</strong></p>
+  <p>Реквізит картки: <strong>{{ supportCard | maskSecret }}</strong></p>
+</div>
+
+</section>
